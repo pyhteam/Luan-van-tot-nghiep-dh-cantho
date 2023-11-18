@@ -3,6 +3,7 @@ require_once('./mvc/helper/MailHelper.php');
 require_once('./mvc/helper/ExcelHelper.php');
 
 use Helper\ExcelHelper;
+use Helper\SendMail;
 
 class Adduser_excel extends Controller
 {
@@ -87,7 +88,22 @@ class Adduser_excel extends Controller
                         );
                     } else {
                         $result = $this->user->addRange($data);
+
+
                         if ($result) {
+                            // send mail
+                            foreach ($data as $item) {
+                                $mailHelper = new SendMail();
+                                $to = $item['email'];
+                                $subject = 'Thông tin tài khoản';
+                                $templatePath = 'resources/template-mail/AccountInfo.html';
+                                $dataSendMail = [
+                                    'email' => $item['email'],
+                                    'password' => $item['password'],
+                                ];
+                                $mailHelper->sendEmailWithTemplate($to, $subject, $templatePath, $dataSendMail);
+                            }
+
                             echo json_encode(
                                 [
                                     'success' => true,

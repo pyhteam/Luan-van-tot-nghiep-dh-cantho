@@ -28,7 +28,7 @@ class SendMail
         $this->mailer->Host = 'smtp.office365.com';
         $this->mailer->SMTPAuth = true;
         $this->mailer->Username = 'pyhteam.solutions@hotmail.com';
-        $this->mailer->Password = 'TubXyaas9x@';
+        $this->mailer->Password = '';
         $this->mailer->SMTPSecure = 'tls';
         $this->mailer->Port = 587;
         $this->mailer->CharSet = 'UTF-8';
