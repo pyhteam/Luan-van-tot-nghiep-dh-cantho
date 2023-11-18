@@ -101,7 +101,7 @@
         }
 
         public function getListLimit($start_in,$number_display){
-            $query = "SELECT * FROM tbl_order order by created_at DESC limit $start_in,$number_display";
+            $query = "SELECT * FROM tbl_order order by id DESC limit $start_in,$number_display";
             $result = $this->con->query($query);
             $arr = array();
             if($result->rowCount() >0){
@@ -110,6 +110,10 @@
                     array_push($arr,$row);
                 }
             }
+            // sort by: name ASC
+            usort($arr, function($a, $b) {
+                return $a['name'] <=> $b['name'];
+            });
             return json_encode($arr);
         }
 

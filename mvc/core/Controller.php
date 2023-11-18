@@ -1,4 +1,5 @@
 <?php 
+
     class Controller{
         public function model($model){
            if(file_exists('./mvc/models/'.$model.'.php')){

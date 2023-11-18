@@ -94,29 +94,29 @@
                                         <td><?php echo $order['ma_lop'] ?></td>
                                         <td>
                                             <?php
-                                                if ($order['nganh'] == '0') {
-                                                    echo "Công nghệ thông tin";
-                                                } elseif ($order['nganh'] == '1') {
-                                                    echo 'Kỹ thuật phần mềm';
-                                                } elseif ($order['nganh'] == '2') {
-                                                    echo 'Hệ thống thông tin';
-                                                } elseif ($order['nganh'] == '3') {
-                                                    echo 'Khoa học máy tính';
-                                                } elseif ($order['nganh'] == '4') {
-                                                    echo 'Mạng máy tính và truyền thông';
-                                                } elseif ($order['nganh'] == '5') {
-                                                    echo 'Truyền thông đa phương tiện';
-                                                } elseif ($order['nganh'] == '6') {
-                                                    echo 'An toàn thông tin';
-                                                } elseif ($order['nganh'] == '7') {
-                                                    echo 'Công nghệ thông tin - CT Chất lượng cao';
-                                                } elseif ($order['nganh'] == '8') {
-                                                    echo 'Kỹ thuật phần mềm - CT Chất lượng cao';
-                                                } else {
-                                                    echo 'Chuyên ngành Tin học ứng dụng';
-                                                }
+                                            if ($order['nganh'] == '0') {
+                                                echo "Công nghệ thông tin";
+                                            } elseif ($order['nganh'] == '1') {
+                                                echo 'Kỹ thuật phần mềm';
+                                            } elseif ($order['nganh'] == '2') {
+                                                echo 'Hệ thống thông tin';
+                                            } elseif ($order['nganh'] == '3') {
+                                                echo 'Khoa học máy tính';
+                                            } elseif ($order['nganh'] == '4') {
+                                                echo 'Mạng máy tính và truyền thông';
+                                            } elseif ($order['nganh'] == '5') {
+                                                echo 'Truyền thông đa phương tiện';
+                                            } elseif ($order['nganh'] == '6') {
+                                                echo 'An toàn thông tin';
+                                            } elseif ($order['nganh'] == '7') {
+                                                echo 'Công nghệ thông tin - CT Chất lượng cao';
+                                            } elseif ($order['nganh'] == '8') {
+                                                echo 'Kỹ thuật phần mềm - CT Chất lượng cao';
+                                            } else {
+                                                echo 'Chuyên ngành Tin học ứng dụng';
+                                            }
                                             ?>
-                                    </td>
+                                        </td>
                                         <td><?php echo $order['ngay_sinh'] ?></td>
                                         <td><?php echo $order['passport'] ?></td>
                                         <td>
@@ -146,7 +146,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-md-6">Học bổng khuyến khích</div>
-                                                <div class="col-md-6" style="font-weight: bold;"><?php echo isset($order['hoc_bong']) && $order['hoc_bong'] == "0" ? "Có" : "Không"  ?></div>
+                                                <div class="col-md-6" style="font-weight: bold;"><?php echo isset($order['hoc_bong']) && $order['hoc_bong'] == "0" ? "Có" : "Không" ?></div>
 
                                             </div>
                                             <hr>
@@ -160,7 +160,7 @@
                                                 <div class="col-md-6" style="font-weight: bold;"><?php echo $order['diemtl'] ?></div>
                                             </div>
                                         </td>
-                                        <!-- <td><?php echo $order['nckh']  ?></td> -->
+                                        <!-- <td><?php echo $order['nckh'] ?></td> -->
                                         <td>
                                             <?php
                                             if ($order['nckh'] == '0') {
@@ -175,16 +175,24 @@
                                             ?>
                                         </td>
                                         <td><?php echo $order['trao_doi'] ?></td>
-                                        <td><?php echo $order['hinh_thuc'] == '0' ? "Học bổng" : "Tự túc"  ?></td>
+                                        <td><?php echo $order['hinh_thuc'] == '0' ? "Học bổng" : "Tự túc" ?></td>
                                         <td><?php echo $order['created_at']; ?></td>
                                         <td class="text-center">
                                             <?php
                                             $string_status = "";
-                                            if ($order['status'] == 0)  $string_status = "Duyệt";
-                                            elseif ($order['status'] == 1) $string_status = "Đã thêm vào danh sách";
-                                            else  $string_status = "SV đã xác nhận";
+                                            if ($order['status'] == 0) {
+                                                $string_status = "Duyệt";
+                                            } elseif ($order['status'] == 1) {
+                                                $string_status = "Đã thêm vào danh sách";
+                                            } else {
+                                                $string_status = "SV đã xác nhận";
+                                            }
+
                                             ?>
-                                            <span id="<?php echo $order['id']; ?>" style="cursor:pointer" class="order_status_confirm<?php echo $order['id']; ?> <?php if ($order['status'] == 0) echo 'btn btn-sm btn-primary'; ?> btn_confirm_order"><?php echo $string_status; ?></span>
+                                            <span id="<?php echo $order['id']; ?>" style="cursor:pointer" class="order_status_confirm<?php echo $order['id']; ?> <?php if ($order['status'] == 0) {
+                                                                                                                                                                        echo 'btn btn-sm btn-primary';
+                                                                                                                                                                    }
+                                                                                                                                                                    ?> btn_confirm_order"><?php echo $string_status; ?></span>
                                         </td>
                                     </tr>
                             <?php }
@@ -197,7 +205,7 @@
                         <?php
                         for ($i = 1; $i <= $data['total_page_number']; $i++) { ?>
                             <li class="paginate_button active"><a <?php if (isset($data['page_index']) && $data['page_index'] == $i) { ?> style="color: #fff;" <?php } ?> href="index.php?url=Order/index/page=<?php echo $i ?>" aria-controls="datatable-checkbox" data-dt-idx="1" tabindex="0"><?php echo ($i) ?></a></li>
-                        <?php  }  ?>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>

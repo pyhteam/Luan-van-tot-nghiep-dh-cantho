@@ -10,6 +10,33 @@ class UserModel extends DB{
         return json_encode($result);
     }
 
+    public function getByUsername($username){
+        $query = "SELECT * FROM user WHERE user_name = '$username'";
+        $result = $this->con->query($query);
+        $row = null;
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+        }
+        return  $row;
+    }
+
+    public function addRange($data){
+        $columns = implode(", ", array_keys((array)$data[0]));
+        
+        $values = [];
+        foreach ($data as $row) {
+            $values[] = "('" . implode("', '", array_values((array)$row)) . "')";
+        }
+        $values = implode(", ", $values);
+        
+        $query = "INSERT INTO user ($columns) VALUES $values";
+
+        $result = false;
+        if($this->con->query($query)){
+            $result = true;
+        }
+        return $result;
+    }
     public function test_login($email,$password){
         $query = "SELECT * FROM user where email='$email' AND password = '$password'";
         $result = false;

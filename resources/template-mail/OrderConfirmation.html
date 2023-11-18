@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xắc thực Đăng Ký</title>
+  </head>
+  <style>
+    .btn {
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background-color: #3e8e41;
+    }
+    .btn-primary {
+      background-color: #6a4caf;
+    }
+    .btn-primary:hover {
+      background-color: #5a3e8e;
+    }
+  </style>
+  <body>
+    <h3>Chào {{ name }}</h3>
+    <p>Cảm ơn bạn đã đăng ký</p>
+    <p>Để xác thực tài khoản, vui lòng nhấn vào đường dẫn bên dưới</p>
+    <a class="btn btn-primary" href="{{ link }}">Xác thực</a>
+    <p>Nếu bạn không thực hiện hành động này, vui lòng bỏ qua email này</p>
+
+    <p>Trân trọng</p>
+  </body>
+</html>

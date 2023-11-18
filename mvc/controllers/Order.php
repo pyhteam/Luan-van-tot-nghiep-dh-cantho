@@ -1,11 +1,10 @@
 <?php
 require_once('./mvc/helper/process_url.php');
-require 'vendor/autoload.php';
+require_once('./mvc/helper/MailHelper.php');
+// require 'vendor/autoload.php';
 
 use Dompdf\Dompdf;
-
-use Dompdf\Options;
-
+use Helper\SendMail;
 class Order extends Controller
 {
     public $slider;
@@ -521,7 +520,42 @@ class Order extends Controller
         $result = json_decode($this->order->update_status($order_id));
         $data['order_id'] = $order_id;
         $data['string_status'] = "Đã thêm vào danh sách";
+
+        // send mail
+        $order = json_decode($this->order->getId($order_id));
+        $mail = new SendMail();
+        $template = 'resources/template-mail/OrderConfirmation.html';
+        $to = $order->email;
+        $subject = 'Order của bạn đã được xác nhận';
+        $templateData = [
+            'name' => $order->full_name,
+            'link' => 'http://'. $_SERVER['HTTP_HOST'] . '/index.php?url=Order/confirm&order_id=' . $order_id
+        ];
+        $mail->sendEmailWithTemplate($to, $subject, $template, $templateData);
+
         echo json_encode($data);
+    }
+    // User confirm order
+    public function confirm()
+    {
+        $order_id = $_GET['order_id'];
+        $result = json_decode($this->order->update_status_nhan_hang($order_id));
+
+        // send mail
+        $order = json_decode($this->order->getId($order_id));
+        $mail = new SendMail();
+        $template = 'resources/template-mail/ThankYou.html';
+        $to = $order->email;
+        $subject = 'Order của bạn đã được xác nhận';
+        $templateData = [
+            'name' => $order->full_name
+        ];
+        $mail->sendEmailWithTemplate($to, $subject, $template, $templateData);
+
+        return $this->view('frontend/layout/master', [
+            'page'          => 'frontend/Order/confirm',
+            'order_id' => $order_id,
+        ]);
     }
 
     public function change_status_nhan_hang()
