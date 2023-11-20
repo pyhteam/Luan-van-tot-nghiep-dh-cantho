@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 15, 2023 lúc 04:53 PM
+-- Thời gian đã tạo: Th10 20, 2023 lúc 05:23 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -278,7 +278,7 @@ INSERT INTO `productes` (`id`, `name`, `price_unit`, `description`, `status`, `q
 (1699949379, 'Trao đổi sinh viên học tập tại Đại học Khoa học và Công Nghệ Trung Quốc', 15000000, 'Trường CNTT&TT sẽ tổ chức cho sinh viên đi học tại Đại học Khoa học và Công Nghệ Trung Quốc.<br>\r\n- Thời gian trao đổi dự kiến: 08/2024.<br>\r\n- Số lượng: 20 sinh viên.<br>\r\n- Tình trạng sinh viên: là sinh viên đang theo học tại trường Đại học Cần Thơ.<br>\r\n- Chi phí chuyến đi: Tự túc (khoảng 15 triệu đồng).<br>\r\n- Hạn cuối nộp hồ sơ: 12/12/2023.<br>', 1, 20, 'trungquoc156.pdf', 'trungquoc689.jpg', 3, '2023-11-14 15:09:39', '2023-11-14 15:09:39', '08/2024'),
 (1699949529, 'Trao đổi sinh viên học tập tại Đại học Soongsil (Hàn Quốc)', 20000000, 'Trường CNTT&TT sẽ tổ chức cho sinh viên đi học tại Đại học Soongsil (Hàn Quốc).<br>\r\n- Thời gian trao đổi dự kiến: 08/2024.<br>\r\n- Số lượng: 20 sinh viên.<br>\r\n- Tình trạng sinh viên: là sinh viên đang theo học tại trường Đại học Cần Thơ.<br>\r\n- Chi phí chuyến đi: Tự túc (khoảng 20 triệu đồng).<br>\r\n- Hạn cuối nộp hồ sơ: 12/12/2023.', 1, 20, 'hanquoc173.pdf', 'Array', 5, '2023-11-14 15:12:09', '2023-11-14 15:19:48', '08/2024'),
 (1699949770, 'Trao đổi sinh viên học tập tại Đại học Chiang Mai (Thái Lan)', 12000000, 'Trường CNTT&TT sẽ tổ chức cho sinh viên đi học tại Đại học Chiang Mai (Thái Lan).<br>\r\n- Thời gian trao đổi dự kiến: 19/05/2024 – 19/06/2024.<br>\r\n- Số lượng: 10 sinh viên.<br>\r\n- Tình trạng sinh viên: là sinh viên đang theo học tại trường Đại học Cần Thơ.<br>\r\n- Chi phí chuyến đi: 12 triệu đồng.<br>\r\n- Hạn cuối nộp hồ sơ: 12/12/2023.', 1, 10, 'hanquoc236.pdf', 'Array', 4, '2023-11-14 15:16:10', '2023-11-14 15:16:36', '19/05/2024 – 19/06/2024'),
-(1699949960, 'Trao đổi sinh viên học tập tại Đại học Quốc gia Đài Loan (NTU)', 13000000, 'Trường CNTT&TT sẽ tổ chức cho sinh viên đi học tạiĐại học Quốc gia Đài Loan (NTU).<br>\r\n- Thời gian trao đổi dự kiến: 04/2024.<br>\r\n- Số lượng: 15 sinh viên.<br>\r\n- Tình trạng sinh viên: là sinh viên đang theo học tại trường Đại học Cần Thơ.<br>\r\n- Chi phí chuyến đi: 13 triệu đồng.<br>\r\n- Hạn cuối nộp hồ sơ: 12/12/2023.', 1, 15, 'NTU455.pdf', 'dailoan458.jpg', 4, '2023-11-14 15:19:20', '2023-11-15 19:38:27', '04/2024');
+(1699949960, 'Trao đổi sinh viên học tập tại Đại học Quốc gia Đài Loan (NTU)', 13000000, 'Trường CNTT&TT sẽ tổ chức cho sinh viên đi học tạiĐại học Quốc gia Đài Loan (NTU).<br>\r\n- Thời gian trao đổi dự kiến: 04/2024.<br>\r\n- Số lượng: 15 sinh viên.<br>\r\n- Tình trạng sinh viên: là sinh viên đang theo học tại trường Đại học Cần Thơ.<br>\r\n- Chi phí chuyến đi: 13 triệu đồng.<br>\r\n- Hạn cuối nộp hồ sơ: 12/12/2023.', 0, 15, 'NTU455.pdf', 'dailoan458.jpg', 4, '2023-11-14 15:19:20', '2023-11-18 15:17:27', '04/2024');
 
 -- --------------------------------------------------------
 
@@ -442,189 +442,16 @@ CREATE TABLE `tbl_order` (
   `ngay_sinh` date DEFAULT NULL,
   `hinh_thuc` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `product_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_order`
 --
 
-INSERT INTO `tbl_order` (`id`, `user_id`, `full_name`, `phone`, `email`, `status`, `created_at`, `updated_at`, `passport`, `av`, `hoc_bong`, `diemtb`, `diemtl`, `trao_doi`, `nckh`, `ma_lop`, `nganh`, `ngay_sinh`, `hinh_thuc`, `image`, `name`) VALUES
-(155, 23, 'Nguyễn Cao Ngân', '0842002365', 'b1910010@gmail.com', 0, '2023-11-14 08:06:31', '2023-11-13 20:12:46', 236589653, '1', '0', 3.5, 3.8, 'Chưa', '2', 'DI19V7A1', '0', '2001-12-12', '0', 'achau326.jpg', 'Trao đổi sinh viên học tập tại Đại học Á Châu - Đài Loan'),
-(156, 24, 'Phan Cộng Hòa', '0845632569', 'b1910011@gmail.com', 0, '2023-11-14 08:06:33', '2023-11-13 21:21:28', 236589653, '0', '0', 3.9, 3.8, 'Chưa', '3', 'DI19K7A1', '1', '2001-02-05', '0', 'achau326.jpg', 'Trao đổi sinh viên học tập tại Đại học Á Châu - Đài Loan'),
-(157, 14, 'Phan Công Văn', '0842336578', 'b1910002@gmail.com', 0, '2023-11-14 08:42:50', '2023-11-14 15:42:50', 236589632, '2', '0', 3.9, 4, 'Chưa', '1', 'DI19V7A4', 'Công nghệ thông tin', '2001-02-01', '0', 'dai-hoc-soong-sil112.jpg', 'Trao đổi sinh viên học tập tại Đại học Soongsil (Hàn Quốc)'),
-(158, 15, 'Dương Minh Minh', '02356987425', 'b1910003@gmail.com', 2, '2023-11-15 13:26:09', '2023-11-14 15:43:58', 123456789, '0', '1', 3.4, 3.5, 'Chưa', '0', 'DI19V7A5', 'Công nghệ thông tin', '2001-03-05', '1', 'trungquoc689.jpg', 'Trao đổi sinh viên học tập tại Đại học Khoa học và Công Nghệ Trung Quốc');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_order_detail`
---
-
-CREATE TABLE `tbl_order_detail` (
-  `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `pro_id` int(11) NOT NULL,
-  `pro_name` varchar(255) NOT NULL,
-  `pro_image` varchar(255) NOT NULL,
-  `pro_price` bigint(20) NOT NULL,
-  `pro_quantity` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_order_detail`
---
-
-INSERT INTO `tbl_order_detail` (`id`, `order_id`, `user_id`, `pro_id`, `pro_name`, `pro_image`, `pro_price`, `pro_quantity`, `created_at`, `updated_at`) VALUES
-(116, 55, 5, 1665245820, 'Bánh ngọt', 'banner-style-4-img-5850jpg', 130, 1, '2022-10-22 09:36:50', '2022-10-22 16:36:50'),
-(117, 55, 5, 1665245794, 'demo111', 'banner-style-2-img-3478jpg', 115, 1, '2022-10-22 09:36:50', '2022-10-22 16:36:50'),
-(118, 55, 5, 1665241662, 'Phạm Thị Ngọc Mỹ', 'banner-style-2-img-1831jpg', 115, 1, '2022-10-22 09:36:50', '2022-10-22 16:36:50'),
-(119, 57, 2, 1665391297, 'Phạm Thị Ngojc myx', 'default-1501.jpg', 130, 4, '2022-10-27 11:39:37', '2022-10-27 18:39:37'),
-(120, 58, 5, 1665241662, 'Phạm Thị Ngọc Mỹ', 'banner-style-2-img-1831jpg', 115, 3, '2022-10-27 11:41:02', '2022-10-27 18:41:02'),
-(121, 59, 5, 1665391297, 'Phạm Thị Ngojc myx', 'default-1501.jpg', 130, 4, '2022-11-03 09:26:02', '2022-11-03 16:26:02'),
-(122, 60, 5, 1665241662, 'Phạm Thị Ngọc Mỹ', 'banner-style-2-img-1831jpg', 115, 5, '2022-11-03 09:28:58', '2022-11-03 16:28:58'),
-(123, 62, 5, 1665245794, 'demo111', 'banner-style-2-img-3478jpg', 115, 2, '2022-11-03 17:20:36', '2022-11-04 00:20:36'),
-(124, 62, 5, 1665245820, 'Bánh ngọt', 'banner-style-4-img-5850jpg', 130, 2, '2022-11-03 17:20:36', '2022-11-04 00:20:36'),
-(125, 62, 5, 1665241662, 'Phạm Thị Ngọc Mỹ', 'banner-style-2-img-1831jpg', 115, 1, '2022-11-03 17:20:36', '2022-11-04 00:20:36'),
-(126, 62, 5, 1665391297, 'Phạm Thị Ngojc myx', 'default-1501.jpg', 20, 1, '2022-11-03 17:20:36', '2022-11-04 00:20:36'),
-(127, 63, 5, 1665245794, 'demo111', 'banner-style-2-img-3478jpg', 115, 2, '2022-11-03 17:21:04', '2022-11-04 00:21:04'),
-(128, 63, 5, 1665245820, 'Bánh ngọt', 'banner-style-4-img-5850jpg', 130, 2, '2022-11-03 17:21:04', '2022-11-04 00:21:04'),
-(129, 63, 5, 1665241662, 'Phạm Thị Ngọc Mỹ', 'banner-style-2-img-1831jpg', 115, 1, '2022-11-03 17:21:04', '2022-11-04 00:21:04'),
-(130, 63, 5, 1665391297, 'Phạm Thị Ngojc myx', 'default-1501.jpg', 20, 1, '2022-11-03 17:21:04', '2022-11-04 00:21:04'),
-(139, 66, 5, 1665245794, 'demo111', 'banner-style-2-img-3478jpg', 115, 2, '2022-11-03 17:23:15', '2022-11-04 00:23:15'),
-(140, 66, 5, 1665245820, 'Bánh ngọt', 'banner-style-4-img-5850jpg', 130, 2, '2022-11-03 17:23:15', '2022-11-04 00:23:15'),
-(141, 66, 5, 1665241662, 'Phạm Thị Ngọc Mỹ', 'banner-style-2-img-1831jpg', 115, 1, '2022-11-03 17:23:15', '2022-11-04 00:23:15'),
-(142, 66, 5, 1665391297, 'Phạm Thị Ngojc myx', 'default-1501.jpg', 20, 1, '2022-11-03 17:23:15', '2022-11-04 00:23:15'),
-(147, 68, 6, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 4, '2022-11-07 17:18:18', '2022-11-08 00:18:18'),
-(148, 68, 6, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2022-11-07 17:18:18', '2022-11-08 00:18:18'),
-(149, 68, 6, 1667750853, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MILAN 902', 'pro_mau_tu_nhien_noi_that_moho_sofa_milan_902_1_f41caab340e14195b33bcd1c99e87dfa_master863.jpg', 4490000, 2, '2022-11-07 17:18:18', '2022-11-08 00:18:18'),
-(150, 68, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-07 17:18:18', '2022-11-08 00:18:18'),
-(151, 68, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-07 17:18:18', '2022-11-08 00:18:18'),
-(152, 69, 6, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 4, '2022-11-07 17:18:40', '2022-11-08 00:18:40'),
-(153, 69, 6, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2022-11-07 17:18:40', '2022-11-08 00:18:40'),
-(154, 69, 6, 1667750853, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MILAN 902', 'pro_mau_tu_nhien_noi_that_moho_sofa_milan_902_1_f41caab340e14195b33bcd1c99e87dfa_master863.jpg', 4490000, 2, '2022-11-07 17:18:40', '2022-11-08 00:18:40'),
-(155, 69, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-07 17:18:40', '2022-11-08 00:18:40'),
-(156, 69, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-07 17:18:40', '2022-11-08 00:18:40'),
-(157, 70, 6, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 4, '2022-11-07 17:18:56', '2022-11-08 00:18:56'),
-(158, 70, 6, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2022-11-07 17:18:56', '2022-11-08 00:18:56'),
-(159, 70, 6, 1667750853, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MILAN 902', 'pro_mau_tu_nhien_noi_that_moho_sofa_milan_902_1_f41caab340e14195b33bcd1c99e87dfa_master863.jpg', 4490000, 2, '2022-11-07 17:18:56', '2022-11-08 00:18:56'),
-(160, 70, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-07 17:18:56', '2022-11-08 00:18:56'),
-(161, 70, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-07 17:18:56', '2022-11-08 00:18:56'),
-(162, 71, 6, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 4, '2022-11-07 17:20:51', '2022-11-08 00:20:51'),
-(163, 71, 6, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2022-11-07 17:20:51', '2022-11-08 00:20:51'),
-(164, 71, 6, 1667750853, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MILAN 902', 'pro_mau_tu_nhien_noi_that_moho_sofa_milan_902_1_f41caab340e14195b33bcd1c99e87dfa_master863.jpg', 4490000, 2, '2022-11-07 17:20:51', '2022-11-08 00:20:51'),
-(165, 71, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-07 17:20:51', '2022-11-08 00:20:51'),
-(166, 71, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-07 17:20:51', '2022-11-08 00:20:51'),
-(167, 72, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-07 17:21:11', '2022-11-08 00:21:11'),
-(168, 73, 5, 1667751581, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FIJI 401', 'pro_nau_noi_that_moho_ghe_sofa_go_fiji_1_e962937714bb42b4b8c5d31c72123940_master789.jpg', 10990000, 1, '2022-11-08 05:26:25', '2022-11-08 12:26:25'),
-(169, 73, 5, 1667751466, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_1_b3b1ab12c10f4ccc9fba26da6fc956c9_master502.jpg', 6990000, 1, '2022-11-08 05:26:25', '2022-11-08 12:26:25'),
-(170, 74, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 06:39:28', '2022-11-08 13:39:28'),
-(171, 75, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:10:55', '2022-11-08 15:10:55'),
-(172, 76, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:13:56', '2022-11-08 15:13:56'),
-(173, 77, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:14:21', '2022-11-08 15:14:21'),
-(174, 78, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:15:20', '2022-11-08 15:15:20'),
-(175, 79, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:15:43', '2022-11-08 15:15:43'),
-(176, 80, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:16:05', '2022-11-08 15:16:05'),
-(177, 81, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:16:41', '2022-11-08 15:16:41'),
-(178, 82, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:16:56', '2022-11-08 15:16:56'),
-(179, 83, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:17:05', '2022-11-08 15:17:05'),
-(180, 84, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:17:09', '2022-11-08 15:17:09'),
-(181, 85, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:18:02', '2022-11-08 15:18:02'),
-(182, 86, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:18:38', '2022-11-08 15:18:38'),
-(183, 87, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:18:55', '2022-11-08 15:18:55'),
-(184, 88, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:20:35', '2022-11-08 15:20:35'),
-(185, 89, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:20:50', '2022-11-08 15:20:50'),
-(186, 90, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:21:08', '2022-11-08 15:21:08'),
-(187, 91, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:21:40', '2022-11-08 15:21:40'),
-(188, 92, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:29:17', '2022-11-08 15:29:17'),
-(189, 93, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:29:43', '2022-11-08 15:29:43'),
-(190, 94, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:30:00', '2022-11-08 15:30:00'),
-(191, 95, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:30:31', '2022-11-08 15:30:31'),
-(192, 96, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:31:09', '2022-11-08 15:31:09'),
-(193, 97, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:31:13', '2022-11-08 15:31:13'),
-(194, 98, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:31:27', '2022-11-08 15:31:27'),
-(195, 99, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 3, '2022-11-08 08:31:36', '2022-11-08 15:31:36'),
-(196, 100, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:47:16', '2022-11-09 23:47:16'),
-(197, 100, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:47:16', '2022-11-09 23:47:16'),
-(198, 100, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:47:16', '2022-11-09 23:47:16'),
-(199, 101, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:47:39', '2022-11-09 23:47:39'),
-(200, 101, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:47:39', '2022-11-09 23:47:39'),
-(201, 101, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:47:39', '2022-11-09 23:47:39'),
-(202, 102, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:49:30', '2022-11-09 23:49:30'),
-(203, 102, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:49:30', '2022-11-09 23:49:30'),
-(204, 102, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:49:30', '2022-11-09 23:49:30'),
-(205, 103, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:57:14', '2022-11-09 23:57:14'),
-(206, 103, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:57:14', '2022-11-09 23:57:14'),
-(207, 103, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:57:14', '2022-11-09 23:57:14'),
-(208, 104, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:57:52', '2022-11-09 23:57:52'),
-(209, 104, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:57:52', '2022-11-09 23:57:52'),
-(210, 104, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:57:52', '2022-11-09 23:57:52'),
-(211, 105, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:59:05', '2022-11-09 23:59:05'),
-(212, 105, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:59:05', '2022-11-09 23:59:05'),
-(213, 105, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:59:05', '2022-11-09 23:59:05'),
-(214, 106, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 16:59:35', '2022-11-09 23:59:35'),
-(215, 106, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 16:59:35', '2022-11-09 23:59:35'),
-(216, 106, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 16:59:35', '2022-11-09 23:59:35'),
-(217, 107, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-09 17:00:17', '2022-11-10 00:00:17'),
-(218, 107, 6, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-09 17:00:17', '2022-11-10 00:00:17'),
-(219, 107, 6, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-09 17:00:17', '2022-11-10 00:00:17'),
-(220, 108, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-11 09:28:13', '2022-11-11 16:28:13'),
-(221, 108, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-11 09:28:13', '2022-11-11 16:28:13'),
-(222, 109, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-11 09:39:14', '2022-11-11 16:39:14'),
-(223, 109, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-11 09:39:14', '2022-11-11 16:39:14'),
-(224, 110, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-11 09:40:54', '2022-11-11 16:40:54'),
-(225, 110, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-11 09:40:54', '2022-11-11 16:40:54'),
-(226, 111, 6, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-11 09:42:05', '2022-11-11 16:42:05'),
-(227, 111, 6, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-11 09:42:05', '2022-11-11 16:42:05'),
-(228, 112, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 4, '2022-11-11 09:45:18', '2022-11-11 16:45:18'),
-(229, 112, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-11 09:45:18', '2022-11-11 16:45:18'),
-(230, 113, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 4, '2022-11-11 09:48:15', '2022-11-11 16:48:15'),
-(231, 113, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-11 09:48:15', '2022-11-11 16:48:15'),
-(232, 114, 5, 1667745622, 'Bàn Sofa – Bàn Cafe – Bàn Trà Tròn Cao Gỗ MOHO OSLO 901', 'pro_mau_tu_nhien_noi_that_moho_ban_tra_tron_cao_oslo_1_68ecf9b7cf6443d4b77ce573c67eac8a_master337.jpg', 799000, 1, '2022-11-14 16:26:06', '2022-11-14 23:26:06'),
-(233, 114, 5, 1667745496, 'Bàn Sofa – Bàn Cafe – Bàn Trà Gỗ Cao Su MOHO MILAN 601 Xám', 'pro_xam_noi_that_moho_ban_sofa_verona_01_f646e77276b542109b6c296cc19c8816_master227.jpg', 599000, 3, '2022-11-14 16:26:06', '2022-11-14 23:26:06'),
-(234, 115, 5, 1667751466, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_1_b3b1ab12c10f4ccc9fba26da6fc956c9_master502.jpg', 6990000, 1, '2022-11-14 16:26:31', '2022-11-14 23:26:31'),
-(235, 115, 5, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 1, '2022-11-14 16:26:31', '2022-11-14 23:26:31'),
-(236, 116, 5, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 1, '2022-11-15 05:30:46', '2022-11-15 12:30:46'),
-(237, 116, 5, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2022-11-15 05:30:46', '2022-11-15 12:30:46'),
-(238, 117, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-15 05:31:25', '2022-11-15 12:31:25'),
-(239, 117, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-15 05:31:25', '2022-11-15 12:31:25'),
-(259, 135, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 1, '2022-11-15 05:49:51', '2022-11-15 12:49:51'),
-(260, 135, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-15 05:49:51', '2022-11-15 12:49:51'),
-(262, 137, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 4, '2022-11-15 08:47:44', '2022-11-15 15:47:44'),
-(263, 138, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 7, '2022-11-15 08:59:12', '2022-11-15 15:59:12'),
-(264, 139, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 8, '2022-11-15 09:02:28', '2022-11-15 16:02:28'),
-(265, 139, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-15 09:02:28', '2022-11-15 16:02:28'),
-(266, 140, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-15 15:18:20', '2022-11-15 22:18:20'),
-(267, 140, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-15 15:18:20', '2022-11-15 22:18:20'),
-(268, 140, 5, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-15 15:18:20', '2022-11-15 22:18:20'),
-(269, 141, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-15 15:18:41', '2022-11-15 22:18:41'),
-(270, 141, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-15 15:18:41', '2022-11-15 22:18:41'),
-(271, 141, 5, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-15 15:18:41', '2022-11-15 22:18:41'),
-(272, 142, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 4, '2022-11-16 06:24:12', '2022-11-16 13:24:12'),
-(273, 142, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-16 06:24:12', '2022-11-16 13:24:12'),
-(274, 142, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-16 06:24:12', '2022-11-16 13:24:12'),
-(275, 143, 5, 1667752228, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Kèm Đôn', 'pro_mau_tu_nhien_noi_that_moho_combo_3_ghe_4_644955f120734499980a4aa8a3dc1a0b_master471.jpg', 15970000, 4, '2022-11-16 06:24:24', '2022-11-16 13:24:24'),
-(276, 143, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 1, '2022-11-16 06:24:24', '2022-11-16 13:24:24'),
-(277, 143, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-16 06:24:24', '2022-11-16 13:24:24'),
-(278, 144, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-16 06:31:29', '2022-11-16 13:31:29'),
-(279, 144, 5, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-16 06:31:29', '2022-11-16 13:31:29'),
-(280, 145, 5, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 1, '2022-11-16 06:54:54', '2022-11-16 13:54:54'),
-(281, 145, 5, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2022-11-16 06:54:54', '2022-11-16 13:54:54'),
-(282, 145, 5, 1667750524, 'Ghế Đôn Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_don_sofa_vline_03_98c79ae0838b4c25af78f887f9653df9_master872.jpg', 1790000, 2, '2022-11-16 06:54:54', '2022-11-16 13:54:54'),
-(283, 146, 5, 1667745387, 'Bàn Sofa – Bàn Cafe – Bàn Trà Gỗ Cao Su MOHO MILAN 602', 'pro_mau_tu_nhien_noi_that_moho_ban_sofa__ban_tra_go_cao_su_milan_601_2_d28fde4149e54fc7af02903cd6998081_master389.jpg', 599000, 1, '2022-11-16 09:30:50', '2022-11-16 16:30:50'),
-(284, 146, 5, 1667745496, 'Bàn Sofa – Bàn Cafe – Bàn Trà Gỗ Cao Su MOHO MILAN 601 Xám', 'pro_xam_noi_that_moho_ban_sofa_verona_01_f646e77276b542109b6c296cc19c8816_master227.jpg', 599000, 1, '2022-11-16 09:30:50', '2022-11-16 16:30:50'),
-(285, 146, 5, 1667749806, 'Bàn Ăn Gỗ MOHO MILAN 901 Màu Gỗ', 'pro_mau_tu_nhien_noi_that_moho_ban_an_go_milan_1m25_2_296dcb2c609f40ea9f3032f515910a46_master419.jpg', 2690000, 1, '2022-11-16 09:30:50', '2022-11-16 16:30:50'),
-(286, 146, 5, 1667752108, 'Ghế Sofa Góc Chữ L Gỗ Cao Su Tự Nhiên MOHO VLINE 601', 'pro_mau_tu_nhien_ghe_sofa_vline_kem_sofa_goc_be_1_0ac1562789ed45b7a3cce976b8e81033_master12.jpg', 13980000, 3, '2022-11-16 09:30:50', '2022-11-16 16:30:50'),
-(287, 147, 5, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2022-12-03 08:03:51', '2022-12-03 15:03:51'),
-(288, 147, 5, 1667750853, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MILAN 902', 'pro_mau_tu_nhien_noi_that_moho_sofa_milan_902_1_f41caab340e14195b33bcd1c99e87dfa_master863.jpg', 4490000, 1, '2022-12-03 08:03:51', '2022-12-03 15:03:51'),
-(289, 148, 2, 1667751288, 'Ghế Sofa Gỗ Tràm Tự Nhiên MOHO VLINE 601', 'pro_xam_noi_that_moho_ghe_sofa_vline_2_9549112b21844f9193318d19fd05e497_master844.jpg', 6990000, 1, '2023-04-13 09:15:22', '2023-04-13 16:15:22'),
-(290, 148, 2, 1667751107, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO VLINE 601 Màu Xám Đậm', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_vline_1_4a3275a5eb5746a99684aed9c8f60496_master779.jpg', 8490000, 1, '2023-04-13 09:15:22', '2023-04-13 16:15:22'),
-(291, 148, 2, 1667750853, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MILAN 902', 'pro_mau_tu_nhien_noi_that_moho_sofa_milan_902_1_f41caab340e14195b33bcd1c99e87dfa_master863.jpg', 4490000, 2, '2023-04-13 09:15:22', '2023-04-13 16:15:22'),
-(292, 150, 2, 1667751980, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO FYN 901', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_fyn_901_2_913919888ddd4e10a79384ac3c15b107_master537.jpg', 12990000, 3, '2023-04-13 09:16:02', '2023-04-13 16:16:02'),
-(295, 153, 1, 1667751699, 'Ghế Sofa Gỗ Cao Su Tự Nhiên MOHO MOSS 601', 'pro_mau_tu_nhien_noi_that_moho_ghe_sofa_go_moss_1_3021688117804b1883b14b85b9f12c42_master348.jpg', 11990000, 1, '2023-10-05 06:50:12', '2023-10-05 13:50:12');
+INSERT INTO `tbl_order` (`id`, `user_id`, `full_name`, `phone`, `email`, `status`, `created_at`, `updated_at`, `passport`, `av`, `hoc_bong`, `diemtb`, `diemtl`, `trao_doi`, `nckh`, `ma_lop`, `nganh`, `ngay_sinh`, `hinh_thuc`, `image`, `name`, `product_id`) VALUES
+(164, 56, 'Ma Seo  Sen', '034234233344', 'senms9x@gmail.com', 2, '2023-11-20 16:02:11', '2023-11-20 22:19:50', 2147483647, '0', '0', 8, 8, '2022', '0', 'L00001', 'Ngành công nghệ thông tin', '2023-11-17', '0', 'malaysia653.jpg', 'Trao đổi sinh viên học tập tại Malaysia từ ngày 18 - 22/7/2023', 1667752108);
 
 -- --------------------------------------------------------
 
@@ -722,7 +549,9 @@ INSERT INTO `tbl_statistical` (`id_statistical`, `order_date`, `sales`, `profit`
 (76, '2023-10-05', '36970000', '2448000', 3, 2),
 (77, '2023-10-14', '0', '0', 0, 1),
 (78, '2023-11-13', '0', '0', 0, 2),
-(79, '2023-11-14', '0', '0', 0, 2);
+(79, '2023-11-14', '0', '0', 0, 2),
+(80, '2023-11-18', '0', '0', 0, 1),
+(81, '2023-11-20', '0', '0', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -733,13 +562,13 @@ INSERT INTO `tbl_statistical` (`id_statistical`, `order_date`, `sales`, `profit`
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
-  `full_name` varchar(255) NOT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `conscious` varchar(255) NOT NULL,
-  `district` varchar(255) NOT NULL,
-  `commune` varchar(100) NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `conscious` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `commune` varchar(100) DEFAULT NULL,
   `address_detail` varchar(255) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -756,10 +585,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `full_name`, `email`, `phone`, `country`, `conscious`, `district`, `commune`, `address_detail`, `password`, `created_at`, `updated_at`, `image`, `ma_lop`, `nganh`, `ngay_sinh`, `khoa`) VALUES
-(14, 'B1910002', 'Phan Công Văn', 'b1910002@gmail.com', '0842336578', 'Việt Nam', 'Cần Thơ', 'Ninh Kiều', 'An Hòa', 'Hẻm 311', 'e10adc3949ba59abbe56e057f20f883e', '2023-10-16 16:15:09', '2023-10-16 16:15:09', NULL, 'DI19V7A4', 'Công nghệ thông tin\n', '2001-02-01', 'Trường CNTT&TT'),
 (15, 'B1910003', 'Dương Minh Minh', 'b1910003@gmail.com', '02356987425', 'Việt Nam', 'Cần Thơ', 'Ninh Kiều', 'Xuân Khánh', 'Hẻm 51, đường 3/2', 'e10adc3949ba59abbe56e057f20f883e', '2023-10-17 07:46:03', '2023-10-17 07:46:03', NULL, 'DI19V7A5\n', 'Công nghệ thông tin', '2001-03-05', 'Trường CNTT&TT'),
 (23, 'B1910010', 'Nguyễn Cao Ngân', 'b1910010@gmail.com', '0842002365', 'Việt Nam', 'Cần Thơ', 'Ninh Kiều', 'Xuân Khánh', 'KTX B - ĐHCT, đường 3/2', '193df35db8e40c4bacd7148dd33fbc76', '2023-11-13 12:42:32', '2023-11-13 12:42:32', NULL, 'DI19V7A1', '0', '2001-12-12', '0'),
-(24, 'B1910011', 'Phan Cộng Hòa', 'b1910011@gmail.com', '0845632569', 'Việt Nam', 'Cần Thơ', 'Ninh Kiều', 'Xuân Khánh', 'KTX A - ĐHCT, đường 3/2', 'f04036f834e6931d67ab6caca6e9bf2d', '2023-11-13 14:18:48', '2023-11-13 14:18:48', NULL, 'DI19K7A1', '1', '2001-02-05', '1');
+(24, 'B1910011', 'Phan Cộng Hòa', 'b1910011@gmail.com', '0845632569', 'Việt Nam', 'Cần Thơ', 'Ninh Kiều', 'Xuân Khánh', 'KTX A - ĐHCT, đường 3/2', 'f04036f834e6931d67ab6caca6e9bf2d', '2023-11-13 14:18:48', '2023-11-13 14:18:48', NULL, 'DI19K7A1', '1', '2001-02-05', '1'),
+(50, 'nguyenvan_1', NULL, 'nguyenvan_1@gmail.com', '034234234234', NULL, NULL, NULL, NULL, NULL, '38ad85ecfc4d8503b90581f7ed1f54a3', '2023-11-18 08:08:48', NULL, NULL, 'L00001', 'Ngành công nghệ thông tin', '0000-00-00', '2017'),
+(51, 'nguyenvan_2', NULL, 'nguyenvan_2@gmail.com', '034234235435', NULL, NULL, NULL, NULL, NULL, '4888871a4f1850f22fcd202102a91b74', '2023-11-18 08:08:50', NULL, NULL, 'L00001', 'Ngành công nghệ thông tin', '0000-00-00', '2017'),
+(52, 'nguyenvan_3', NULL, 'nguyenvan_3@gmail.com', '034234236454', NULL, NULL, NULL, NULL, NULL, '439a47b29afad0417bd3d24260baf398', '2023-11-18 08:08:53', NULL, NULL, 'L00001', 'Ngành công nghệ thông tin', '0000-00-00', '2017'),
+(56, 'senms9x', NULL, 'senms9x@gmail.com', '034234233344', NULL, NULL, NULL, NULL, NULL, '86ac0b0a2320fcee0bb14a38192d86f9', '2023-11-18 08:16:19', NULL, NULL, 'L00001', 'Ngành công nghệ thông tin', '0000-00-00', '2017');
 
 -- --------------------------------------------------------
 
@@ -874,12 +706,6 @@ ALTER TABLE `tbl_order`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tbl_order_detail`
---
-ALTER TABLE `tbl_order_detail`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Chỉ mục cho bảng `tbl_statistical`
 --
 ALTER TABLE `tbl_statistical`
@@ -983,25 +809,19 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
-
---
--- AUTO_INCREMENT cho bảng `tbl_order_detail`
---
-ALTER TABLE `tbl_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_statistical`
 --
 ALTER TABLE `tbl_statistical`
-  MODIFY `id_statistical` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_statistical` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT cho bảng `wish_list`
