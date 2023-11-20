@@ -275,9 +275,12 @@
 
             $data['nckh'] = $nckh;
             $data['hinh_thuc'] = $hinh_thuc;
+
+            $data['product_id'] = $product_id;
             // echo json_encode($data);
             // die();
-            $order_id = json_decode($this->order->insert($user_id,$full_name,$phone,$email,$status,$created_at,$updated_at,$passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name));
+            $order_id = json_decode($this->order->insert($user_id,$full_name,$phone,$email,$status,$created_at,$updated_at,
+            $passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$product_id));
             
             
             $total = 0;

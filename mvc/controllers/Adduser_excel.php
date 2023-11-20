@@ -48,8 +48,8 @@ class Adduser_excel extends Controller
             if ($fileInfo['error'] === UPLOAD_ERR_OK) {
                 // Create an SplFileInfo object from the uploaded file
                 $uploadedFile = new SplFileInfo($fileInfo['tmp_name']);
-                $excelHelper = new ExcelHelper($uploadedFile);
-                $dataList = $excelHelper->readExcel();
+                $excelHelper = new ExcelHelper();
+                $dataList = $excelHelper->readExcel($uploadedFile);
 
                 // Return the data as JSON
                 if (count($dataList) > 0) {

@@ -1,5 +1,9 @@
 <?php
     require_once('./mvc/helper/process_url.php');
+    require_once('./mvc/helper/ExcelHelper.php');
+
+use FontLib\Table\Type\head;
+use Helper\ExcelHelper;
     class Product extends Controller{
         public $product;
         public $category;
@@ -352,4 +356,59 @@
             echo json_encode($data);
         }
 
+
+    public function exportExcel()
+    {
+        // check SERVER METHOD POST
+        header('Content-Type: application/json');
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $product_id = $_POST['product_id'];
+            $originalDataList = $this->product->exportExcelByProductId($product_id);
+            $dataList = [];
+            foreach ($originalDataList as $key => $item) {
+                $res = [
+                    "id" => $item['id'],
+                    "user_id" => $item['user_id'],
+                    "full_name" => $item['full_name'],
+                    "phone" => $item['phone'],
+                    "email" => $item['email'],
+                    "status" => $item['status'],
+                    "created_at" => $item['created_at'],
+                    "updated_at" => $item['updated_at'],
+                    "passport" => $item['passport'],
+                    "av" => $item['av'],
+                    "hoc_bong" => $item['hoc_bong'],
+                    "diemtb" => $item['diemtb'],
+                    "diemtl" => $item['diemtl'],
+                    "trao_doi" => $item['trao_doi'],
+                    "nckh" => $item['nckh'],
+                    "ma_lop" => $item['ma_lop'],
+                    "nganh" => $item['nganh'],
+                    "ngay_sinh" => $item['ngay_sinh'],
+                    "hinh_thuc" => $item['hinh_thuc'],
+                    "image" => $item['image'],
+                    "name" => $item['name'],
+                    "product_id" => $item['product_id']
+                ];
+                array_push($dataList, $res);
+            }
+            if (count($dataList) > 0) {
+                $excelHelper = new ExcelHelper();
+                $pathSave = './resources/exportExcel/Product_' . date('YmdHis') . '.xlsx';
+                $excelHelper->exportExcel($dataList, $pathSave);
+                if (file_exists($pathSave)) {
+                    echo json_encode([
+                        'success' => true,
+                        'message' => 'File exported successfully',
+                        'data' => $pathSave
+                    ]);
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'File exported failed'
+                    ]);
+                }
+            }
+        }
+    }
     }

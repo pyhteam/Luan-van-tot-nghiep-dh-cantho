@@ -1,8 +1,9 @@
 <?php 
     class OrderModel extends DB{
-        public function insert($user_id,$full_name,$phone,$email,$status,$created_at,$updated_at,$passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name){
+        public function insert($user_id,$full_name,$phone,$email,$status,$created_at,$updated_at,$passport,$av, $hoc_bong,$diemtb,
+        $diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$productId){
            
-            $query = "INSERT INTO tbl_order VALUES(null,'$user_id','$full_name','$phone','$email','$status','$created_at','$updated_at', '$passport','$av', '$hoc_bong','$diemtb','$diemtl','$trao_doi', '$nckh','$ma_lop','$nganh','$ngay_sinh','$hinh_thuc','$image','$name')";
+            $query = "INSERT INTO tbl_order VALUES(null,'$user_id','$full_name','$phone','$email','$status','$created_at','$updated_at', '$passport','$av', '$hoc_bong','$diemtb','$diemtl','$trao_doi', '$nckh','$ma_lop','$nganh','$ngay_sinh','$hinh_thuc','$image','$name','$productId')";
             $result = false;
             // echo $query;
             // die();

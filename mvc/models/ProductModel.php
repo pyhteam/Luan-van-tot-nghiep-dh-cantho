@@ -12,6 +12,20 @@ class ProductModel extends DB{
     }
 
 
+    public function exportExcelByProductId($productId){
+        $query = "SELECT * FROM tbl_order WHERE product_id = '$productId' and status = 2";
+        $result = $this->con->query($query);
+
+        $arr = array();
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                array_push($arr,$row);
+            }
+        }
+        return $arr;
+    }
+
+
     public function getList_limit(){
         $query = "SELECT * FROM productes ORDER BY id DESC Limit 8";
         $result = $this->con->query($query);
