@@ -93,6 +93,8 @@ class Adduser_excel extends Controller
                         if ($result) {
                             // send mail
                             foreach ($data as $item) {
+
+                                // waiting 2s    
                                 $mailHelper = new SendMail();
                                 $to = $item['email'];
                                 $subject = 'Thông tin tài khoản';
@@ -102,6 +104,7 @@ class Adduser_excel extends Controller
                                     'password' => $item['password'],
                                 ];
                                 $mailHelper->sendEmailWithTemplate($to, $subject, $templatePath, $dataSendMail);
+                                sleep(2);
                             }
 
                             echo json_encode(
