@@ -10,6 +10,7 @@ class Partner_Login extends Controller
     public $tags;
     public $blog_categoryofblog;
     public $blog_tags;
+    public $admin;
     public function __construct()
     {
         $this->partner = $this->model('PartnerModel');
@@ -21,26 +22,20 @@ class Partner_Login extends Controller
         $this->tags = $this->model('TagsModel');
         $this->blog_categoryofblog = $this->model('Blog_CategoryOfBlogModel');
         $this->blog_tags = $this->model('Blog_TagsModel');
+        $this->admin = $this->model('AdminModel');
     }
 
 
 
-    public function login()
-    {
-        $this->view('frontend/login/login');
+    public function login(){
+        $this->view('backend/login/login');
     }
 
-    public function logout()
-    {
-
-        if (isset($_SESSION['user_login'])) {
-            unset($_SESSION['user_login']);
-            unset($_SESSION['cart']);
-        }
-        $this->view('frontend/login/login');
-        header('location index.php?url=Partner_Login/login');
+    public function logout(){
+        unset($_SESSION['admin_login']);
+        $this->view('backend/login/login');
     }
-
+// CHỉnh đăng nhập vào doitac@gmail.com có role=1
     public function post_login()
     {
 
@@ -111,7 +106,7 @@ class Partner_Login extends Controller
                     'categories'    => $categories,
                     'message_success' => 'Đăng nhập thành công'
                 ]);
-                header('location: index.php?url=Home');
+                header('location: index.php?url=Admin');
             }
         }
     }

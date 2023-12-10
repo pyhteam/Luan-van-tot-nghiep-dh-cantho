@@ -6,22 +6,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
 
-        <!-- Slide ảnh -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="./public/frontend/images/nen.png" style="margin-top: 35px;">
-
-            </div>
-            <!-- <?php
-                if(isset($data['list_slider'])){
-                    foreach($data['list_slider'] as $slider){ ?>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="./public/uploads/<?php echo $slider->image; ?>" alt="Second slide">
-                        </div>
-                <?php } } ?>
- -->
-
-        </div>
+       
 
         <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

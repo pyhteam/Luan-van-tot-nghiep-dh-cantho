@@ -1,14 +1,14 @@
 <?php 
     class OrderModel extends DB{
         public function insert($user_id,$full_name,$phone,$email,$status,$created_at,$updated_at,$passport,$av, $hoc_bong,$diemtb,
-        $diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$productId){
+        $diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$productId,$can_bo){
            
-            $query = "INSERT INTO tbl_order VALUES(null,'$user_id','$full_name','$phone','$email','$status','$created_at','$updated_at', '$passport','$av', '$hoc_bong','$diemtb','$diemtl','$trao_doi', '$nckh','$ma_lop','$nganh','$ngay_sinh','$hinh_thuc','$image','$name','$productId')";
+            $query = "INSERT INTO tbl_order VALUES(null,'$user_id','$full_name','$phone','$email','$status','$created_at','$updated_at', '$passport','$av', '$hoc_bong','$diemtb','$diemtl','$trao_doi', '$nckh','$ma_lop','$nganh','$ngay_sinh','$hinh_thuc','$image','$name','$productId','$can_bo')";
             $result = false;
             // echo $query;
             // die();
             if($this->con->query($query)){
-                $result = true;
+                $result = true; 
             }
             if($result){
                 return json_encode($this->con->lastInsertId());
@@ -68,8 +68,8 @@
             return json_encode($arr);
         }
 
-        public function update($id,$full_name,$status,$updated_at,$passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name){
-            $query = "UPDATE tags SET  name = '$full_name', status = '$status', updated_at = '$updated_at', passport = '$passport', av = '$av', hoc_bong = '$hoc_bong', diemtb = '$diemtb', diemtl = '$diemtl', trao_doi = '$trao_doi', nckh = '$nckh', ma_lop = '$ma_lop', nganh = '$nganh', ngay_sinh ='$ngay_sinh', hinh_thuc='$hinh_thuc','$image','$name' WHERE id = '$id'";
+        public function update($id,$full_name,$status,$updated_at,$passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$can_bo){
+            $query = "UPDATE tags SET  name = '$full_name', status = '$status', updated_at = '$updated_at', passport = '$passport', av = '$av', hoc_bong = '$hoc_bong', diemtb = '$diemtb', diemtl = '$diemtl', trao_doi = '$trao_doi', nckh = '$nckh', ma_lop = '$ma_lop', nganh = '$nganh', ngay_sinh ='$ngay_sinh', hinh_thuc='$hinh_thuc','$image','$name','$can_bo' WHERE id = '$id'";
             $result = false;
             if($this->con->query($query)){
                 $result = true;
@@ -261,8 +261,23 @@
             return json_encode($arr);
         }
 
-        public function getListLimit_status($start_in,$number_display){
-            $query = "SELECT * FROM tbl_order where status= '0' order by created_at DESC limit $start_in,$number_display";
+    
+
+        // public function getListLimit_status($start_in,$number_display){
+        //     $query = "SELECT * FROM tbl_order where status= '0' order by created_at DESC limit $start_in,$number_display";
+        //     $result = $this->con->query($query);
+        //     $arr = array();
+        //     if($result->rowCount() >0){
+        //         while($row = $result->fetch()){
+        //             $row['order_detail'] = array();
+        //             array_push($arr,$row);
+        //         }
+        //     }
+        //     return json_encode($arr);
+        // }
+
+        public function getListLimit_status0($start_in,$number_display){
+            $query = "SELECT * FROM tbl_order where status = '0' order by created_at DESC limit $start_in,$number_display";
             $result = $this->con->query($query);
             $arr = array();
             if($result->rowCount() >0){
@@ -275,7 +290,20 @@
         }
 
         public function getListLimit_status1($start_in,$number_display){
-            $query = "SELECT * FROM tbl_order where status= '1' order by created_at DESC limit $start_in,$number_display";
+            $query = "SELECT * FROM tbl_order where status = '1' order by created_at DESC limit $start_in,$number_display";
+            $result = $this->con->query($query);
+            $arr = array();
+            if($result->rowCount() >0){
+                while($row = $result->fetch()){
+                    $row['order_detail'] = array();
+                    array_push($arr,$row);
+                }
+            }
+            return json_encode($arr);
+        }
+
+        public function getListLimit_status2($start_in,$number_display){
+            $query = "SELECT * FROM tbl_order where status = '2' order by created_at DESC limit $start_in,$number_display";
             $result = $this->con->query($query);
             $arr = array();
             if($result->rowCount() >0){
@@ -288,5 +316,6 @@
         }
         
 
+        
     }
 ?>

@@ -1,5 +1,18 @@
 <div class="title_left">
-    <h3>Danh sách sinh viên</h3>
+<table>
+    <th><h3>Danh sách sinh viên</h3></th>
+    <!-- Chưa có thêm code xử lý tìm kiếm -->
+    <th><div class="ml-4" style="position: fixed; top: 70px; right: 20px;">
+        <form method="POST" action="index.php?url=User/search_order">
+            <div class="input-group" style="width: 250px;">
+                <input type="text" id="search_key" name="search_key" class="form-control" placeholder="Tìm kiếm sinh viên...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default ml-2" type="button" style="background-color: #0000FF; color:white;">Tìm</button>
+                 </span>
+            </div>
+        </form>
+    </div></th>
+</table>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
@@ -39,8 +52,8 @@
                                     </td>
                                     <td><?php echo $user->ngay_sinh ?></td>
                                     <td><?php echo $user->ma_lop ?></td>
-                                    <!-- <td><?php echo $user->nganh ?></td> -->
-                                    <td><?php
+                                    <td><?php echo $user->nganh ?></td>
+                                    <!-- <td><?php
                                             if ($user->khoa == '0') {
                                                 echo "Công nghệ thông tin";
                                             } elseif ($user->khoa == '1') {
@@ -63,9 +76,9 @@
                                                 echo 'Chuyên ngành Tin học ứng dụng';
                                             }
                                             ?>
-                                    </td>
-                                    <!-- <td><?php echo $user->khoa ?></td> -->
-                                    <td><?php
+                                    </td> -->
+                                    <td><?php echo $user->khoa ?></td>
+                                    <!-- <td><?php
                                             if ($user->khoa == '0') {
                                                 echo "Công nghệ thông tin";
                                             } elseif ($user->khoa == '1') {
@@ -80,7 +93,7 @@
                                                 echo 'Truyền thông đa phương tiện';
                                             }
                                             ?>
-                                    </td>
+                                    </td> -->
                                     <td><?php echo $user->phone ?></td>
                                     <td>
                                         <?php echo $user->email ?>
@@ -96,4 +109,21 @@
             </div>
         </div>
     </div>
+</div>
+<!-- <div class="dataTables_paginate paging_simple_numbers" id="datatable-checkbox_paginate">
+    <ul class="pagination">
+        <?php
+            for ($i = 1; $i <= $data['page_number']; $i++) { ?>
+                <li class="paginate_button active"><a <?php if (isset($data['page_index']) && $data['page_index'] == $i) { ?> style="color: #fff;" <?php } ?>
+                    href="index.php?url=User/index/page=<?php echo $i ?>" aria-controls="datatable-checkbox" data-dt-idx="1" tabindex="0"><?php echo ($i) ?></a></li>
+        <?php  }  ?>
+    </ul>
+</div> -->
+<div class="dataTables_paginate paging_simple_numbers float-right" id="datatable-checkbox_paginate">
+                <ul class="pagination">
+                    <?php
+                    for ($i = 1; $i <= $data['total_page_number']; $i++) { ?>
+                        <li class="paginate_button active"><a <?php if (isset($data['page_index']) && $data['page_index'] == $i) { ?> style="color: #fff;" <?php } ?> href="index.php?url=User/index/page=<?php echo $i ?>" aria-controls="datatable-checkbox" data-dt-idx="1" tabindex="0"><?php echo ($i) ?></a></li>
+                    <?php  }  ?>
+                </ul>
 </div>

@@ -124,6 +124,11 @@
                         <input type="text" name="address_detail" value="<?php echo isset($data['user_login']->address_detail)?$data['user_login']->address_detail:""; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <span class="text-danger" style="font-size: 14px;"></span>
                     </div>
+                    <!-- <div class="form-group">
+                        <label for="exampleInputEmail1">Mật khẩu</label>
+                        <input type="text" name="password" value="<?php echo isset($data['user_login']->password)?$data['user_login']->password:""; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <span class="text-danger" style="font-size: 14px;"></span>
+                    </div> -->
                 </div>
             
             <div class="col-sm-4">

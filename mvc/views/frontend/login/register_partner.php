@@ -46,7 +46,7 @@
 </div> -->
 
     <div class="container-fluid mb-5">
-        <div class="jumbotron jumbotron-fluid" style="background-image: url(./public/frontend/images/nen.png); height:160px; width:91%; margin-left:60px">
+        <div class="jumbotron jumbotron-fluid" style="background-image: url(./public/frontend/images/nen.png); height:160px; width:74%; margin-left:210px;"></div>
         </div>
     </div>
 
@@ -71,14 +71,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">User name<span class="text-danger">*</span></label>
+                                    <label for="exampleInputEmail1">Tên tài khoản<span class="text-danger">*</span></label>
                                     <input type="text" name="user_name" value="<?php echo isset($data['result_old']['user_name']) ? $data['result_old']['user_name'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['user_name'][0]) ? $data['error']['user_name'][0] : "" ?></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Name (School)<span class="text-danger">*</span></label>
+                                    <label for="exampleInputEmail1">Tên trường<span class="text-danger">*</span></label>
                                     <input type="text" name="name" value="<?php echo isset($data['result_old']['name']) ? $data['result_old']['name'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['name'][0]) ? $data['error']['name'][0] : "" ?></span>
                                 </div>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Country <span class="text-danger">*</span></label>
+                                <label for="exampleInputEmail1">Quốc gia<span class="text-danger">*</span></label>
                                 <input type="text" name="country" value="<?php echo isset($data['result_old']['country']) ? $data['result_old']['country'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['country'][0]) ? $data['error']['country'][0] : "" ?></span>
 
@@ -106,31 +106,31 @@
                         </div>
                         </div>
                         <div class="form-group">
-                        <label for="exampleInputEmail1">Address</label>
+                        <label for="exampleInputEmail1">Địa chỉ</label>
                         <input type="text" name="address_detail" value="<?php echo isset($data['result_old']['address_detail']) ? $data['result_old']['address_detail'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['address_detail'][0]) ? $data['error']['address_detail'][0] : "" ?></span>
 
                     </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+                            <label for="exampleInputPassword1">Mật khẩu <span class="text-danger">*</span></label>
                             <input type="password" name="password" value="<?php echo isset($data['result_old']['password']) ? $data['result_old']['password'] : '' ?>" class="form-control" id="exampleInputPassword1">
                             <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['password'][0]) ? $data['error']['password'][0] : "" ?></span>
 
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password confirm <span class="text-danger">*</span></label>
+                            <label for="exampleInputPassword1">Nhập lại mật khẩu <span class="text-danger">*</span></label>
                             <input type="password" name="password_confirm" value="<?php echo isset($data['result_old']['password_confirm']) ? $data['result_old']['password_confirm'] : '' ?>" class="form-control" id="exampleInputPassword1">
                             <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['password_confirm'][0]) ? $data['error']['password_confirm'][0] : "" ?></span>
 
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn2 btn_login btn-primary mr-4" style="background-color: blue; cursor: pointer;">Submit</button>
+                            <button type="submit" class="btn2 btn_login btn-primary mr-4" style="background-color: blue; cursor: pointer;">Tạo mới</button>
                             <!-- <a href="index.php?url=User_Login/login" class="text_link">Đăng nhập</a> -->
                             <a href="index.php?url=Admin/index">
-                                <button type="button" class="btn2 btn-danger mr-4" style="background-color: red; color:white;">Cancel</button>
+                                <button type="button" class="btn2 btn-danger mr-4" style="background-color: red; color:white;">Hủy</button>
                         </div>
                     </form>
                 </div>

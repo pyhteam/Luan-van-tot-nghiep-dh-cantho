@@ -48,6 +48,7 @@
         $product = json_decode($product);
         $image = $product->image[0];
         $name =  $product->name;
+        $can_bo = $product->can_bo;
        
         $error = array();
         $test_validate = false;
@@ -197,6 +198,7 @@
             $result_old['hinh_thuc'] = $_POST['hinh_thuc'];
         }
 
+
         //5. country
         // $error['country'] = array();
         // if($_POST['country']==""){
@@ -265,6 +267,7 @@
             $nckh = $_POST['nckh'];
             $ngay_sinh = $_POST['ngay_sinh'];
             $hinh_thuc = $_POST['hinh_thuc'];
+          
             $data['ma_lop'] = $ma_lop;
             $data['nganh'] = $nganh;
             $data['passport'] = $passport;
@@ -277,10 +280,11 @@
             $data['hinh_thuc'] = $hinh_thuc;
 
             $data['product_id'] = $product_id;
+
             // echo json_encode($data);
             // die();
             $order_id = json_decode($this->order->insert($user_id,$full_name,$phone,$email,$status,$created_at,$updated_at,
-            $passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$product_id));
+            $passport,$av, $hoc_bong,$diemtb,$diemtl,$trao_doi, $nckh,$ma_lop,$nganh,$ngay_sinh,$hinh_thuc,$image,$name,$product_id,$can_bo));
             
             
             $total = 0;
@@ -342,7 +346,7 @@
             $user_name = "username";
             $password = "password";
             $email = "email";
-            $mail->sendLoginInfo($email, $user_name, $password);
+            // $mail->sendLoginInfo($email, $user_name, $password);
             if($_POST['method_payment']==1){
                 $payment =  new Payment();
                 unset($_SESSION['cart']);

@@ -1,4 +1,6 @@
 <?php 
+require_once('./mvc/helper/process_url.php');
+
     class Category extends Controller{
         public $category;
         public $product;
@@ -18,6 +20,7 @@
                 'categories'    =>  $categories
             ]);
         }
+
 
         public function create(){
             $this->view('backend/layout/master',[
@@ -232,7 +235,7 @@
             }
             $updated_at =  $updated_at = date('Y-m-d H:i:s');
             $this->category->update_status($category_edit->id,$category_edit->status,$updated_at);
-            echo json_encode();
+            // echo json_encode();
         }
 
         public function change_status_2(){

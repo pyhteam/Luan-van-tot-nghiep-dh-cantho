@@ -9,6 +9,7 @@
         public function login(){
             $this->view('backend/login/login');
         }
+        
 
         public function post_login(){
           
@@ -29,7 +30,7 @@
             $error['password'] = array();
             if(!isset($_POST['password']) || $_POST['password']==""){
                 $test_validate = true;
-                array_push($error['password'],'Vui lòng nhập password');
+                array_push($error['password'],'Vui lòng nhập mật khẩu');
             }else{
                 $result_old['password'] = $_POST['password'];
             }

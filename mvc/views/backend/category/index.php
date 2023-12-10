@@ -1,5 +1,18 @@
 <div class="title_left">
-    <h3>Danh sách danh mục</h3>
+<table>
+    <th><h3>Danh sách danh mục</h3></th>
+    <!-- Chưa có thêm code xử lý tìm kiếm -->
+    <th><div class="ml-4" style="position: fixed; top: 70px; right: 20px;">
+        <form method="POST" action="index.php?url=User/search_order">
+            <div class="input-group" style="width: 280px;">
+                <input type="text" id="search_key" name="search_key" class="form-control" placeholder="Tìm kiếm tên danh mục...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default ml-2" type="button" style="background-color: #0000FF; color:white;">Tìm</button>
+                 </span>
+            </div>
+        </form>
+    </div></th>
+</table>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12  ">
@@ -18,7 +31,7 @@
                 <a href="index.php?url=Category/create">
                     <button class="btn btn-primary">Thêm mới <i class="fa fa-plus"></i></button>
                 </a>
-                <ul class="nav navbar-right panel_toolbox">
+                <!-- <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
                     <li class="dropdown">
@@ -30,7 +43,7 @@
                     </li>
                     <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
-                </ul>
+                </ul> -->
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

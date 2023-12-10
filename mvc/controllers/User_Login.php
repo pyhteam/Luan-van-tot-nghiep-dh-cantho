@@ -57,7 +57,7 @@
             $error['password'] = array();
             if($_POST['password']==""){
                 $test_validate = true;
-                array_push($error['password'],'Vui lòng nhập password');
+                array_push($error['password'],'Vui lòng nhập mật khẩu');
             }else{
                 $result_old['password'] = $_POST['password'];
             }
@@ -242,13 +242,13 @@
             $error['password'] = array();
             if($_POST['password']==""){
                 $test_validate = true;
-                array_push($error['password'],'Vui lòng nhâp password');
+                array_push($error['password'],'Vui lòng nhâp mật khẩu');
             }
             //10 password_confirm
             $error['password_confirm'] = array();
             if($_POST['password_confirm']==""){
                 $test_validate = true;
-                array_push($error['password_confirm'],'Vui lòng nhập password confirm');
+                array_push($error['password_confirm'],'Vui lòng nhập lại mật khẩu');
             }
 
 

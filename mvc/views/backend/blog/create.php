@@ -1,5 +1,5 @@
 <div class="title_left">
-    <h3><?php echo isset($data['blog_edit'])?"Cập nhật Blog":"Thêm mới Blog" ?></h3>
+    <h3><?php echo isset($data['blog_edit'])?"Cập nhật bài viết tiêu chí":"Thêm mới bài viết tiêu chí" ?></h3>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -26,7 +26,7 @@
                     action="index.php?url=Blog/store"
                <?php } ?> method="POST" class="form-label-left input_mask" enctype="multipart/form-data">
                     <div class="col-md-6 col-sm-6  form-group">
-                        <label style="font-size: 16px" for="" class="form-label">Tên danh mục (<span class="text-danger">*</span>)</label>
+                        <label style="font-size: 16px" for="" class="form-label">Tên tiêu đề (<span class="text-danger">*</span>)</label>
                         <input type="text" class="form-control" value="<?php
                             if(isset($data['blog_edit'])) echo $data['blog_edit']->title;
                             else{
@@ -34,7 +34,7 @@
                                     echo $data['result_old']['title'];
                                 }
                             }
-                        ?>" name="title" placeholder="Nhập tên Blog" >
+                        ?>" name="title" placeholder="Nhập tên tiêu đề" >
 
                         <span class="text-danger">
                             <?php
@@ -42,7 +42,7 @@
                             ?>
                         </span>
                     </div>
-                    <div class="col-md-6 col-sm-6  form-group">
+                    <!-- <div class="col-md-6 col-sm-6  form-group">
                         <div class="form-group">
                             <label style="font-size: 16px" for="" class="form-label">Hình ảnh (<span class="text-danger">*</span>)</label>
                             <div class="input-group">
@@ -57,8 +57,8 @@
                                 ?>
                             </span>
                         </div>
-                    </div>
-                    <div class="col-md-12 col-sm-12  form-group">
+                    </div> -->
+                    <!-- <div class="col-md-12 col-sm-12  form-group">
                         <label style="font-size: 16px" for="" class="form-label">Danh mục</label>
                         <br>
                         <div class="ml-4">
@@ -85,8 +85,8 @@
                                 echo isset($data['error']) && isset($data['error']['cat_ids']) && isset($data['error']['cat_ids'][0])?$data['error']['cat_ids'][0]:"";
                             ?>
                         </span>
-                    </div>
-                    <div class="col-md-12 col-sm-12  form-group">
+                    </div> -->
+                    <!-- <div class="col-md-12 col-sm-12  form-group">
                         <label style="font-size: 16px" for="" class="form-label">Thẻ Blog</label>
                         <br>
                         <div class="ml-4">
@@ -109,14 +109,14 @@
                             <?php } } ?>
 
 
-                        </div>
-                        <span class="text-danger">
+                        </div> -->
+                        <!-- <span class="text-danger">
                             <?php
                                 echo isset($data['error']) && isset($data['error']['tags_ids']) && isset($data['error']['tags_ids'][0])?$data['error']['tags_ids'][0]:"";
                             ?>
                         </span>
-                    </div>
-                    <div class="col-md-12 col-sm-12 ">
+                    </div> -->
+                    <!-- <div class="col-md-12 col-sm-12 ">
                         <label style="font-size: 16px" for="" class="form-label">Mở đầu bài viết</label>
                         <textarea rows="5" name="detail_header" class="form-control"><?php
                                 if(isset($data['blog_edit']) && isset($data['blog_edit']->detail_header)){
@@ -153,6 +153,20 @@
                                 }
                             ?>
                         </textarea>
+                    </div> -->
+                    <!-- ------------ -->
+                    <div class="col-md-12 col-sm-12 ">
+                        <label style="font-size: 16px" for="" class="form-label">Nội dung bài viết</label>
+                        <textarea rows="5" name="description" class="form-control"><?php
+                                if(isset($data['blog_edit'])  && isset($data['blog_edit']->description)){
+                                    echo $data['blog_edit']->description;
+                                }else{
+                                    if(isset($data['result_old']) && isset($data['result_old']['description'])){
+                                        echo $data['result_old']['description'];
+                                    }
+                                }
+                            ?>
+                        </textarea>
                     </div>
                     <div class="col-md-12 mt-4 col-sm-12 ">
                         <div class="checkbox">
@@ -169,11 +183,12 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <a href="http://127.0.0.1:8000/trang-admin/bai-viet"><button type="button" class="btn btn-primary">Cancel</button></a>
+                            <a href="index.php?url=Blog/index"><button type="button" class="btn btn-primary" style="background-color: red;">Cancel</button></a>
                             <button class="btn btn-primary" type="reset">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
+                    
 <!--                    <input type="hidden" name="_token" value="DMk50zxxLpu1K9ZGOF2IejakwZePjikGhCWji9Mj">-->
                 </form>
             </div>

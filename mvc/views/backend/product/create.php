@@ -108,11 +108,19 @@
 
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 mb-2">
+                            <h4>Cán bộ phụ trách dẫn đi</h4>
+                            <textarea class="form-control" name="can_bo" id="" rows="1"><?php if (isset($data['product_edit'])) echo $data['product_edit']->can_bo; ?></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 mb-2">
                             <h4>Mô tả tóm tắt chương trình</h4>
                             <textarea class="form-control" name="description" id="" rows="5"><?php if (isset($data['product_edit'])) echo $data['product_edit']->description; ?></textarea>
                         </div>
                     </div>
 
+                    
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 mb-4">
                             <?php
@@ -143,12 +151,12 @@
                     <!-- <div class="ln_solid"></div> -->
                     <div class="form-group row">
                         <div class="col-md-8 col-sm-8  offset-md-4">
-                            <a href="index.php?url=Product/index"><button type="button" class="btn btn-primary">Cancel</button></a>
+                            <a href="index.php?url=Product/index"><button type="button" class="btn btn-primary">Hủy</button></a>
                             <?php
                             if (isset($data['product_edit'])) { ?>
-                                <button type="submit" name="btnStoreProduct" class="btn btn-danger">Update</button>
+                                <button type="submit" name="btnStoreProduct" class="btn btn-danger">Cập nhật</button>
                             <?php } else { ?>
-                                <button type="submit" name="btnStoreProduct" class="btn btn-success">Submit</button>
+                                <button type="submit" name="btnStoreProduct" class="btn btn-success">Tạo mới</button>
                             <?php } ?>
                         </div>
                     </div>

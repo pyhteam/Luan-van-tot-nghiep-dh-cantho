@@ -1,7 +1,7 @@
 <?php
 class ProductModel extends DB{
-    public function insert($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$created_at,$updated_at,$thoi_gian){
-        $query = "INSERT INTO productes VALUES('$id','$name','$price_unit','$description','$status','$quantity','$pdf','$image','$cat_id','$created_at','$updated_at','$thoi_gian')";
+    public function insert($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$created_at,$updated_at,$thoi_gian,$can_bo){
+        $query = "INSERT INTO productes VALUES('$id','$name','$price_unit','$description','$status','$quantity','$pdf','$image','$cat_id','$created_at','$updated_at','$thoi_gian','$can_bo')";
         // echo json_encode($query);
         // die();
         $result = false;
@@ -255,8 +255,8 @@ class ProductModel extends DB{
         return json_encode($row);
     }
 
-    public function update($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$updated_at,$thoi_gian){
-        $query = "UPDATE productes SET name = '$name', price_unit = '$price_unit', description = '$description', status = '$status', quantity = '$quantity', pdf = '$pdf', image = '$image', cat_id = '$cat_id',updated_at = '$updated_at', thoi_gian = '$thoi_gian' WHERE id = '$id'";
+    public function update($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$updated_at,$thoi_gian,$can_bo){
+        $query = "UPDATE productes SET name = '$name', price_unit = '$price_unit', description = '$description', status = '$status', quantity = '$quantity', pdf = '$pdf', image = '$image', cat_id = '$cat_id',updated_at = '$updated_at', thoi_gian = '$thoi_gian', can_bo = '$can_bo' WHERE id = '$id'";
         $result = false;
         if($this->con->query($query)){
             $result = true;

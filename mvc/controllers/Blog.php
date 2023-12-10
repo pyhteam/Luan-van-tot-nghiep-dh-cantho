@@ -45,12 +45,8 @@ require_once('./mvc/helper/process_url.php');
         }
 
         public function create(){
-            $category_of_blogs = json_decode($this->category_of_blogs->getList());
-            $tags       = json_decode($this->tags->getList());
             $this->view('backend/layout/master',[
-               'page'           => 'backend/blog/create',
-                'categories'    => $category_of_blogs,
-                'tags'          => $tags
+               'page'           => 'backend/blog/create'
             ]);
         }
 
@@ -60,23 +56,6 @@ require_once('./mvc/helper/process_url.php');
             $error = array();
             $result_old = array();
 
-                //1.cat_id
-            $error['cat_ids'] = array();
-
-            if(!isset($_POST['cat_ids'])){
-                array_push($error['cat_ids'],'Vui lòng chọn danh mục bài viết');
-                $test_validate = true;
-            }else{
-                $result_old['cat_ids'] = $_POST['cat_ids']; //array cat_id
-            }
-                //2. tags_id
-            $error['tags_ids'] = array();
-            if(!isset($_POST['tags_ids'])){
-                array_push($error['tags_ids'],'Vui lòng chọn tags bài viết');
-                $test_validate = true;
-            }else{
-                $result_old['tags_ids'] = $_POST['tags_ids']; //array tags_id
-            }
                 //3. title
             $error['title'] = array();
             if(!isset($_POST['title']) || $_POST['title']==""){
@@ -85,71 +64,26 @@ require_once('./mvc/helper/process_url.php');
             }else{
                 $result_old['title'] = $_POST['title'];
             }
-                //4. image
-            $error['image'] = array();
-            if($_FILES['image']['name'] == ""){
-                array_push($error['image'],"Vui lòng chọn hình ảnh");
+
+                //Nội dung
+            $error['description'] = array();
+            if(!isset($_POST['description']) || $_POST['description']==""){
+                array_push($error['description'],'');
                 $test_validate = true;
-            }
-
-            if(isset($_POST['detail_header'])){
-                $result_old['detail_header'] = $_POST['detail_header'];
-            }
-
-            if(isset($_POST['detail_body'])){
-                $result_old['detail_body'] = $_POST['detail_body'];
-            }
-
-            if(isset($_POST['detail_footer'])){
-                $result_old['detail_footer'] = $_POST['detail_footer'];
+            }else{
+                $result_old['description'] = $_POST['description'];
             }
 
             if(isset($_POST['status'])){
                 $result_old['status'] = 1;
             }
-
-
-
             if($test_validate == false){
-                $cat_id         = isset($_POST['cat_ids'][0])?$_POST['cat_ids'][0]:"";
-                $tags_id        = isset($_POST['tags_ids'][0])?$_POST['tags_ids'][0]:"";
                 $title          = $_POST['title'];
+                $description    = $_POST['description'];
                 $status         = isset($_POST['status'])?1:0;
-                $detail_header  = $_POST['detail_header'];
-                $detail_body    = $_POST['detail_body'];
-                $detail_footer  = $_POST['detail_footer'];
                 $created_at     = date('Y-m-d H:i:s');
                 $updated_at     = date('Y-m-d H:i:s');
-                $image = "";
-                //xu li image
-
-                $allowTypes = array('jpg','png','jpeg','gif','image/jpeg');
-                $path = "./public/uploads/";
-                if($_FILES['image']['name']){
-                    if(in_array($_FILES['image']['type'],$allowTypes)){
-                        $file_name = $_FILES['image']['name'];
-                        $array = array();
-                        $array = explode('.',$file_name);
-                        $new_name = $array[0].rand(0,999).'.'.$array[1];
-
-                        $image = $new_name;
-                        move_uploaded_file($_FILES['image']['tmp_name'],$path.$new_name);
-                    }
-                }
-
-                $id_blog = json_decode($this->blogs->insert($cat_id,$tags_id,$title,$status,$detail_header,$detail_body,$detail_footer,$image,$created_at,$updated_at));
-                //Xu li table blog_category
-                if(isset($_POST['cat_ids'])){
-                    foreach ($_POST['cat_ids'] as $cat_id){
-                        $result = $this->blog_category->insert($id_blog,$cat_id);
-                    }
-                }
-                //Xu li table blog_tags
-                if(isset($_POST['tags_ids'])){
-                    foreach($_POST['tags_ids'] as $tags_id){
-                        $result = $this->blog_tags->insert($id_blog,$tags_id);
-                    }
-                }
+                $id_blog = json_decode($this->blogs->insert($title,$description,$status,$created_at,$updated_at));
                 if(isset($id_blog)){
                     $list_blog = json_decode($this->blogs->getList());
                     $message_success = "Tạo mới bài viết thành công";
@@ -179,13 +113,6 @@ require_once('./mvc/helper/process_url.php');
 
             $blog_id = $_POST['blog_id'];
             $blog_delete =  json_decode($this->blogs->getId($blog_id));
-            //1.unlink image in folder uploads
-            $path_image_old = './public/uploads/'.$blog_delete->image;
-            if(file_exists($path_image_old)){
-                unlink($path_image_old);
-            }
-            //2.Xóa các record có blog_id
-            $result =  $this->blog_category->delete_by_blogid($blog_id);
 
             //3.Xóa blog
             $result = $this->blogs->delete($blog_id);
@@ -203,13 +130,9 @@ require_once('./mvc/helper/process_url.php');
 
         public function edit($id){
             $blog_edit = json_decode($this->blogs->getId($id));
-            $category_of_blogs = json_decode($this->category_of_blogs->getList());
-            $tags       = json_decode($this->tags->getList());
             $this->view('backend/layout/master',[
                 'page'              => 'backend/blog/create',
-                'blog_edit'         => $blog_edit,
-                'categories'    => $category_of_blogs,
-                'tags'              => $tags
+                'blog_edit'         => $blog_edit
             ]);
         }
 
@@ -219,23 +142,6 @@ require_once('./mvc/helper/process_url.php');
             $error = array();
             $result_old = array();
 
-            //1.cat_id
-            $error['cat_ids'] = array();
-
-            if(!isset($_POST['cat_ids'])){
-                array_push($error['cat_ids'],'Vui lòng chọn danh mục bài viết');
-                $test_validate = true;
-            }else{
-                $result_old['cat_ids'] = $_POST['cat_ids']; //array cat_id
-            }
-            //2. tags_id
-            $error['tags_ids'] = array();
-            if(!isset($_POST['tags_ids'])){
-                array_push($error['tags_ids'],'Vui lòng chọn tags bài viết');
-                $test_validate = true;
-            }else{
-                $result_old['tags_ids'] = $_POST['tags_ids']; //array tags_id
-            }
             //3. title
             $error['title'] = array();
             if(!isset($_POST['title']) || $_POST['title']==""){
@@ -245,17 +151,13 @@ require_once('./mvc/helper/process_url.php');
                 $result_old['title'] = $_POST['title'];
             }
 
-
-            if(isset($_POST['detail_header'])){
-                $result_old['detail_header'] = $_POST['detail_header'];
-            }
-
-            if(isset($_POST['detail_body'])){
-                $result_old['detail_body'] = $_POST['detail_body'];
-            }
-
-            if(isset($_POST['detail_footer'])){
-                $result_old['detail_footer'] = $_POST['detail_footer'];
+            // Nội dung
+            $error['description'] = array();
+            if(!isset($_POST['description']) || $_POST['description']==""){
+                array_push($error['description'],'');
+                $test_validate = true;
+            }else{
+                $result_old['description'] = $_POST['description'];
             }
 
             if(isset($_POST['status'])){
@@ -264,59 +166,13 @@ require_once('./mvc/helper/process_url.php');
 
             if($test_validate==false){
                 $blog_edit = json_decode($this->blogs->getId($id));
-                $cat_id         = isset($_POST['cat_ids'][0])?$_POST['cat_ids'][0]:$blog_edit->cat_id;
-                $tags_id        = isset($_POST['tags_ids'][0])?$_POST['tags_ids'][0]:$blog_edit->tags_id;
-                $status         = isset($_POST['status'])?1:0;
                 $title          = isset($_POST['title'])?$_POST['title']:$blog_edit->title;
-                $detail_header  = isset($_POST['detail_header'])?$_POST['detail_header']:$blog_edit->detail_header;
-                $detail_body    = isset($_POST['detail_body'])?$_POST['detail_body']:$blog_edit->detail_body;
-                $detail_footer  = isset($_POST['detail_footer'])?$_POST['detail_footer']:$blog_edit->detail_footer;
-                $image = "";
-
-                // Xu ly image
-                if(!$_FILES['image']['name']){
-                    $image = $blog_edit->image;
-                }else{
-                    //Xoa anh cu trong thu muc uploads
-                    $path_image_old = './public/uploads/'.$blog_edit->image;
-                    if(file_exists($path_image_old)){
-                        unlink($path_image_old);
-                    }
-
-                    $allowTypes = array('jpg','png','jpeg','gif','image/jpeg');
-                    $path = "./public/uploads/";
-                    if($_FILES['image']['name']){
-                        if(in_array($_FILES['image']['type'],$allowTypes)){
-                            $file_name = $_FILES['image']['name'];
-                            $array = array();
-                            $array = explode('.',$file_name);
-                            $new_name = $array[0].rand(0,999).'.'.$array[1];
-                            $image = $new_name;
-                            move_uploaded_file($_FILES['image']['tmp_name'],$path.$new_name);
-                        }
-                    }
-                }
-                //Xu li cat_id
-                if($_POST['cat_ids']){
-                    //Xoa cac record trong table blog_cat voi blog_id
-                    $this->blog_category->delete_by_blog_id($blog_edit->id);
-                    foreach ($_POST['cat_ids'] as $cat_id){
-                        $result = $this->blog_category->insert($blog_edit->id,$cat_id);
-                    }
-                }
-                //Xu li tags_id
-                if($_POST['tags_ids']){
-                    //Xoa cac record trong table blog_tag voi blog_id
-                    $this->blog_tags->delete_by_blogid($blog_edit->id);
-                    foreach($_POST['tags_ids'] as $tags_id){
-                        $result = $this->blog_tags->insert($blog_edit->id,$tags_id);
-                    }
-                }
+                $description    = isset($_POST['description'])?$_POST['description']:$blog_edit->description;
+                $status         = isset($_POST['status'])?1:0;
                 $updated_at = Date("Y-m-d H:i:s");
-//                echo $image;
-//                die();
-                $result = $this->blogs->update($cat_id,$tags_id,$title,$status,$detail_header,$detail_body,$detail_footer,$image,$updated_at,$blog_edit->id);
-                if($result == "true"){
+
+                $result = $this->blogs->update($title,$description,$status,$updated_at,$blog_edit->id);
+                if($result){
                     $list_blog = json_decode($this->blogs->getList());
                     $this->view('backend/layout/master',[
                         'page'          => 'backend/blog/index',
@@ -325,26 +181,18 @@ require_once('./mvc/helper/process_url.php');
                     ]);
                     header('location: index.php?url=Blog');
                 }else{
-                    $category_of_blogs  = json_decode($this->category_of_blogs->getList());
-                    $tags               = json_decode($this->tags->getList());
                     $message_error      = "Cập nhật bài viết không thành công";
                     $this->view('backend/layout/master',[
                         'page'           => 'backend/blog/create',
-                        'categories'    => $category_of_blogs,
-                        'tags'          => $tags,
                         'message_error' => $message_error,
                         'error'         => $error,
                         'result_old'    => $result_old
                     ]);
                 }
             }else{
-                $category_of_blogs  = json_decode($this->category_of_blogs->getList());
-                $tags               = json_decode($this->tags->getList());
                 $message_error      = "Cập nhật bài viết không thành công";
                 $this->view('backend/layout/master',[
                     'page'           => 'backend/blog/create',
-                    'categories'    => $category_of_blogs,
-                    'tags'          => $tags,
                     'message_error' => $message_error,
                     'error'         => $error,
                     'result_old'    => $result_old

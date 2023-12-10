@@ -441,7 +441,43 @@ class Order extends Controller
         ]);
     }
 
-    public function status()
+    // public function status()
+    // {
+    //     // $list_order = json_decode($this->order->getList(),true);
+
+    //     $count_order  = json_decode($this->order->count_order());
+    //     $number_display = 6;
+    //     $total_page_number = ceil($count_order / $number_display);
+    //     $process_url = new process_url();
+    //     $is_page = json_decode($process_url->is_page($_GET['url']));
+    //     // url chua page
+    //     $page_index = 1;
+    //     if ($is_page) {
+    //         $page_index =  json_decode($process_url->index_page($_GET['url']));
+    //         $start_in = ($page_index - 1) * $number_display;
+    //         $list_order = json_decode($this->order->getListLimit_status($start_in, $number_display), true);
+    //     } else { //url khong chua page
+    //         $start_in = 0;
+    //         $list_order = json_decode($this->order->getListLimit_status($start_in, $number_display), true);
+    //     }
+
+    //     foreach ($list_order as $key => $order) {
+    //         $list_order_detail = json_decode($this->order_detail->getList_by_orderid($order['id']), true);
+    //         $list_order[$key]['order_detail'] = $list_order_detail;
+    //     }
+
+    //     // echo json_encode($list_order);
+    //     // die();
+
+    //     $this->view('backend/layout/master', [
+    //         'page'          => 'backend/Order/index',
+    //         'list_order' => $list_order,
+    //         'total_page_number' => $total_page_number,
+    //         'page_index'    => $page_index
+    //     ]);
+    // }
+
+    public function status0()
     {
         // $list_order = json_decode($this->order->getList(),true);
 
@@ -455,10 +491,10 @@ class Order extends Controller
         if ($is_page) {
             $page_index =  json_decode($process_url->index_page($_GET['url']));
             $start_in = ($page_index - 1) * $number_display;
-            $list_order = json_decode($this->order->getListLimit_status($start_in, $number_display), true);
+            $list_order = json_decode($this->order->getListLimit_status0($start_in, $number_display), true);
         } else { //url khong chua page
             $start_in = 0;
-            $list_order = json_decode($this->order->getListLimit_status($start_in, $number_display), true);
+            $list_order = json_decode($this->order->getListLimit_status0($start_in, $number_display), true);
         }
 
         foreach ($list_order as $key => $order) {
@@ -512,6 +548,42 @@ class Order extends Controller
             'page_index'    => $page_index
         ]);
     }
+    
+    public function status2()
+    {
+        // $list_order = json_decode($this->order->getList(),true);
+
+        $count_order  = json_decode($this->order->count_order());
+        $number_display = 6;
+        $total_page_number = ceil($count_order / $number_display);
+        $process_url = new process_url();
+        $is_page = json_decode($process_url->is_page($_GET['url']));
+        // url chua page
+        $page_index = 1;
+        if ($is_page) {
+            $page_index =  json_decode($process_url->index_page($_GET['url']));
+            $start_in = ($page_index - 1) * $number_display;
+            $list_order = json_decode($this->order->getListLimit_status2($start_in, $number_display), true);
+        } else { //url khong chua page
+            $start_in = 0;
+            $list_order = json_decode($this->order->getListLimit_status2($start_in, $number_display), true);
+        }
+
+        foreach ($list_order as $key => $order) {
+            $list_order_detail = json_decode($this->order_detail->getList_by_orderid($order['id']), true);
+            $list_order[$key]['order_detail'] = $list_order_detail;
+        }
+
+        // echo json_encode($list_order);
+        // die();
+
+        $this->view('backend/layout/master', [
+            'page'          => 'backend/Order/index',
+            'list_order' => $list_order,
+            'total_page_number' => $total_page_number,
+            'page_index'    => $page_index
+        ]);
+    }
 
 
     public function change_status()
@@ -526,7 +598,7 @@ class Order extends Controller
         $mail = new SendMail();
         $template = 'resources/template-mail/OrderConfirmation.html';
         $to = $order->email;
-        $subject = 'Order của bạn đã được xác nhận';
+        $subject = 'Đăng ký tham gia của bạn đã được xác nhận';
         $templateData = [
             'name' => $order->full_name,
             'link' => 'http://'. $_SERVER['HTTP_HOST'] . '/index.php?url=Order/confirm&order_id=' . $order_id
@@ -546,7 +618,7 @@ class Order extends Controller
         $mail = new SendMail();
         $template = 'resources/template-mail/ThankYou.html';
         $to = $order->email;
-        $subject = 'Order của bạn đã được xác nhận';
+        $subject = 'Đăng ký tham gia của bạn đã được xác nhận';
         $templateData = [
             'name' => $order->full_name
         ];
@@ -663,5 +735,43 @@ class Order extends Controller
         $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
 
         exit(0);
+    }
+
+    public function review_search(){
+        $search_key = $_GET['search_key'];
+        $list_order_need_find = json_decode($this->order->list_order_need_find($search_key)); // Thay đổi tên hàm và table ở đây
+        $html = "";
+        foreach($list_order_need_find as $order){ // Thay đổi biến $product thành $order ở đây
+            $html .= '<li style="display:block;" class="mt-3">
+                <a style="color: #000 !important" href="index.php?url=Home/order_detail/'.$order->id.'">
+                    <img height="50" width="50" class="float-left mr-3" src="./public/uploads/'.$order->image[0].'" alt="">
+                </a>
+                <span>
+                    <a style="color: #b19361; font-size: 14px;text-decoration: none" href="index.php?url=Home/order_detail/'.$order->id.'" class="">'.$order->name.'</a>
+                    <br>
+                    <span class="info_search_item">'.$order->created_at.'</span>
+                </span>
+            </li>';
+        }
+        echo $html;
+    }
+    
+
+    public function search_order(){
+        $search_key = $_POST['search_key'];
+        $total_cart = 0;
+        if(isset($_SESSION['cart'])){
+            foreach($_SESSION['cart'] as $cart){
+                $total_cart+=$cart['quatity'];
+            }
+        }
+        $list_order = json_decode($this->order->list_order_need_find($search_key));
+      
+        $this->view('frontend/layout/master',[
+            'page'                  => 'backend/Order/index',
+            'list_order'          => $list_order,
+            'total_cart'            => $total_cart,
+            'message_success'       => 'Kết quả tìm kiếm "'.$search_key.'"',
+        ]);
     }
 }

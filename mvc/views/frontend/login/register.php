@@ -46,7 +46,7 @@
 </div> -->
 
     <div class="container-fluid mb-5">
-        <div class="jumbotron jumbotron-fluid" style="background-image: url(./public/frontend/images/nen.png); height:160px; width:91%; margin-left:60px">
+    <div class="jumbotron jumbotron-fluid" style="background-image: url(./public/frontend/images/nen.png); height:160px; width:74%; margin-left:210px;"></div>
         </div>
     </div>
 
@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">User name / MSSV <span class="text-danger">*</span></label>
+                                    <label for="exampleInputEmail1">MSSV / Tên tài khoản <span class="text-danger">*</span></label>
                                     <input type="text" name="user_name" value="<?php echo isset($data['result_old']['user_name']) ? $data['result_old']['user_name'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['user_name'][0]) ? $data['error']['user_name'][0] : "" ?></span>
                                 </div>
@@ -113,7 +113,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngành học <span class="text-danger">*</span></label>
-                                    <select name="nganh" class="form-control">
+                                    <!-- <select name="nganh" class="form-control">
                                         <option selected value="0">Công nghệ thông tin</option>
                                         <option value="1">Kỹ thuật phần mềm</option>
                                         <option value="2">Hệ thống thông tin</option>
@@ -124,9 +124,9 @@
                                         <option value="7">Công nghệ thông tin - CT Chất lượng cao</option>
                                         <option value="8">Kỹ thuật phần mềm - CT Chất lượng cao</option>
                                         <option value="9">Chuyên ngành Tin học ứng dụng</option>
-                                    </select>
-                                    <!-- <input type="text" name="nganh" value="<?php echo isset($data['result_old']['nganh']) ? $data['result_old']['nganh'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['nganh'][0]) ? $data['error']['nganh'][0] : "" ?></span> -->
+                                    </select> -->
+                                    <input type="text" name="nganh" value="<?php echo isset($data['result_old']['nganh']) ? $data['result_old']['nganh'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['nganh'][0]) ? $data['error']['nganh'][0] : "" ?></span>
 
                                 </div>
                             </div>
@@ -135,16 +135,16 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Khoa <span class="text-danger">*</span></label>
-                                    <select name="khoa" class="form-control">
+                                    <!-- <select name="khoa" class="form-control">
                                         <option selected value="0">Công nghệ thông tin</option>
                                         <option value="1">Công nghệ phần mềm</option>
                                         <option value="2">Hệ thống thông tin</option>
                                         <option value="3">Khoa học máy tính</option>
                                         <option value="4">Mạng máy tính và truyền thông</option>
                                         <option value="5">Truyền thông đa phương tiện</option>
-                                    </select>
-                                    <!-- <input type="text" name="khoa" value="<?php echo isset($data['result_old']['khoa']) ? $data['result_old']['khoa'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['khoa'][0]) ? $data['error']['khoa'][0] : "" ?></span> -->
+                                    </select> -->
+                                    <input type="text" name="khoa" value="<?php echo isset($data['result_old']['khoa']) ? $data['result_old']['khoa'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['khoa'][0]) ? $data['error']['khoa'][0] : "" ?></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -218,24 +218,24 @@
                     </div> -->
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+                            <label for="exampleInputPassword1">Mật khẩu <span class="text-danger">*</span></label>
                             <input type="password" name="password" value="<?php echo isset($data['result_old']['password']) ? $data['result_old']['password'] : '' ?>" class="form-control" id="exampleInputPassword1">
                             <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['password'][0]) ? $data['error']['password'][0] : "" ?></span>
 
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password confirm <span class="text-danger">*</span></label>
+                            <label for="exampleInputPassword1">Nhập lại mật khẩu <span class="text-danger">*</span></label>
                             <input type="password" name="password_confirm" value="<?php echo isset($data['result_old']['password_confirm']) ? $data['result_old']['password_confirm'] : '' ?>" class="form-control" id="exampleInputPassword1">
                             <span class="text-danger" style="font-size: 14px;"><?php echo isset($data['error']['password_confirm'][0]) ? $data['error']['password_confirm'][0] : "" ?></span>
 
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn2 btn_login btn-primary mr-4" style="background-color: blue; cursor: pointer;">Submit</button>
+                            <button type="submit" class="btn2 btn_login btn-primary mr-4" style="background-color: blue; cursor: pointer;">Tạo mới</button>
                             <!-- <a href="index.php?url=User_Login/login" class="text_link">Đăng nhập</a> -->
                             <a href="index.php?url=Admin/index">
-                                <button type="button" class="btn2 btn-danger mr-4" style="background-color: red; color:white;">Cancel</button>
+                                <button type="button" class="btn2 btn-danger mr-4" style="background-color: red; color:white;">Hủy</button>
                         </div>
                     </form>
                 </div>

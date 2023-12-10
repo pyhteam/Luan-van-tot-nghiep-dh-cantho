@@ -65,10 +65,11 @@
         }
 
         public function update_status($id,$status,$updated_at){
-            echo "hello 123";
-            die();
+            // echo "hello 123";
+            // die();
             $query = "UPDATE categories SET status = '$status', updated_at = '$updated_at' where id = '$id'";
-            $this->ccon->query($query);
+            $this->con->query($query);
         }
+
     }
 ?>

@@ -51,11 +51,11 @@
                             <img src="./public/frontend/images/logo_cit.png" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>Welcome,</span>
+                            <span>Xin chào,</span>
                             <?php if (isset($_SESSION['admin_login']) && $_SESSION['admin_login']['role'] == 0) { ?>
                                 <h2>Admin</h2>
                             <?php } else { ?>
-                                <h2>Partner</h2>
+                                <h2>Đối tác</h2>
                             <?php }
 
                             ?>

@@ -27,14 +27,14 @@ class SendMail
         // Set the SMTP server and credentials
         $this->mailer->Host = 'smtp.office365.com';
         $this->mailer->SMTPAuth = true;
-        $this->mailer->Username = 'pyhteam.solutions@hotmail.com';
-        $this->mailer->Password = '';
+        $this->mailer->Username = 'duyenb1910046@outlook.com.vn';
+        $this->mailer->Password = '#U3E9J4NYP';
         $this->mailer->SMTPSecure = 'tls';
         $this->mailer->Port = 587;
         $this->mailer->CharSet = 'UTF-8';
 
         // Set the 'from' address and name
-        $this->mailer->setFrom('pyhteam.solutions@hotmail.com', 'Đại Học Cần Thơ');
+        $this->mailer->setFrom('duyenb1910046@outlook.com.vn', 'HTQL TRAO ĐỔI SINH VIÊN ĐI NƯỚC NGOÀI TRƯỜNG CNTT&TT');
     }
 
     public function sendEmail($to, $subject, $body, $isHTML = true)

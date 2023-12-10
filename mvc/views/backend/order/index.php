@@ -53,11 +53,20 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_0">Chưa duyệt</a>
             <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_1">Đã thêm vào danh sách</a>
+            <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_2">SV đã xác nhận</a>
         </div>
     </div>
-    <a href="index.php?url=Order/index" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> Quay lại
-    </a>
+    <div><a href="index.php?url=Order/index" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i></a></div>
+    <div class="ml-4" style="position: fixed; top: 110px; right: 20px;">
+        <form method="POST" action="index.php?url=Order/search_order">
+            <div class="input-group" style="width: 300px;">
+                <input type="text" id="search_key" name="search_key" class="form-control" placeholder="Tìm kiếm tên chương trình...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default ml-2" type="button" style="background-color: #0000FF;color:white;">Tìm</button>
+                 </span>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
@@ -90,9 +99,10 @@
                                 foreach ($data['list_order'] as $key => $order) { ?>
                                     <tr>
                                         <th scope="row"><?php echo ($key + 1); ?></th>
-                                        <td><?php echo $order['full_name'] ?><br><a href="index.php?url=Order/print_order/<?php echo $order['id']; ?>"><i class="fa fa-print" aria-hidden="true"></i> In đơn hàng<a></td>
+                                        <td><?php echo $order['full_name'] ?><br></td>
                                         <td><?php echo $order['ma_lop'] ?></td>
-                                        <td>
+                                        <td><?php echo $order['nganh'] ?></td>
+                                        <!-- <td>
                                             <?php
                                             if ($order['nganh'] == '0') {
                                                 echo "Công nghệ thông tin";
@@ -116,7 +126,7 @@
                                                 echo 'Chuyên ngành Tin học ứng dụng';
                                             }
                                             ?>
-                                        </td>
+                                        </td> -->
                                         <td><?php echo $order['ngay_sinh'] ?></td>
                                         <td><?php echo $order['passport'] ?></td>
                                         <td>
@@ -124,6 +134,8 @@
                                             <!-- <?php echo $order['image'] ?></td> -->
                                             <br><br>
                                             <?php echo $order['name'] ?>
+                                            <br><br>
+                                            <p><b>Cán bộ phụ trách:</b> <?php echo $order['can_bo'] ?></p>
                                         </td>
                                         </td>
 

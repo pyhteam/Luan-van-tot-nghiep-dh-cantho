@@ -37,7 +37,7 @@
 
 
                 <form action="index.php?url=Admin_Login/post_login" method="POST">
-                    <h1>Login Form</h1>
+                    <h1>Đăng nhập</h1>
                     <div>
                         <span class="text-danger"><?php echo isset($data['error']['email'][0])?$data['error']['email'][0]:""; ?></span>
                         <input type="email" class="form-control" value="<?php echo isset($data['result_old']['email'])?$data['result_old']['email']:''; ?>" name="email" placeholder="Email"/>
@@ -45,21 +45,21 @@
                     </div>
                     <div>
                         <span class="text-danger"><?php echo isset($data['error']['password'][0])?$data['error']['password'][0]:""; ?></span>
-                        <input type="password" class="form-control" value="<?php echo isset($data['result_old']['password'])?$data['result_old']['password']:''; ?>" name="password" placeholder="Password"/>
+                        <input type="password" class="form-control" value="<?php echo isset($data['result_old']['password'])?$data['result_old']['password']:''; ?>" name="password" placeholder="Mật khẩu"/>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary submit" >Log in</button>
+                        <button type="submit" class="btn btn-primary submit" >Đăng nhập</button>
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
-                        <p class="change_link">New to site?
+                        <!-- <p class="change_link">New to site?
                             <a href="#signup" class="to_register"> Create Account </a>
-                        </p>
+                        </p> -->
                         <div class="clearfix"></div>
                         <br />
                         <div>
                             <h1><i class="fa fa-paw"></i> HTQL</h1>
-                            <p>©2023 Foreign student exchange management system of The College of Information and Communication Technology.</p>
+                            <p>©2023 Hệ thống quản lý trao đổi sinh viên đi nước ngoài Trường Công nghệ thông tin và truyền thông.</p>
                         </div>
                     </div>
 

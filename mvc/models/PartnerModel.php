@@ -57,4 +57,31 @@ class PartnerModel extends DB{
         $result = $this->con->query($query);
         return json_encode($result->rowCount());
     }
+
+    public function getList_limit(){
+        $query = 'SELECT * FROM partner order by updated_at DESC LIMIT 8';
+        $result = $this->con->query($query);
+        $arr = array();
+        if($result->rowCount()){
+            while($row_partner_item = $result->fetch()){
+                $partner_id = $row_partner_item['id'];
+                array_push($arr,$row_partner_item);
+            }
+        }
+        return json_encode($arr);
+    }
+
+    public function getListLimit($start_in,$number_display){
+        $query = "SELECT * FROM partner order by updated_at DESC limit $start_in,$number_display";
+       
+        $result = $this->con->query($query);
+        $arr = array();
+        if($result->rowCount() > 0){
+            while($row_partner_item = $result->fetch()){
+                $partner_id = $row_partner_item['id'];
+                array_push($arr,$row_partner_item);
+            }
+        }
+        return  json_encode($arr);
+    }
 }

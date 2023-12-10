@@ -1,6 +1,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="title_left">
-    <h3>Danh sách chương trình</h3>
+<table>
+    <th><h3>Danh sách chương trình</h3></th>
+    <!-- Chưa có thêm code xử lý tìm kiếm -->
+    <th><div class="ml-4" style="position: fixed; top: 70px; right: 20px;">
+        <form method="POST" action="index.php?url=User/search_order">
+            <div class="input-group" style="width: 300px;">
+                <input type="text" id="search_key" name="search_key" class="form-control" placeholder="Tìm kiếm tên chương trình...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default ml-2" type="button" style="background-color: #0000FF; color:white;">Tìm</button>
+                 </span>
+            </div>
+        </form>
+    </div></th>
+</table>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -24,7 +37,13 @@
                             <th>Tên chương trình</th>
                             <th>Chi phí ~~</th>
                             <th>Thời gian</th>
-                            <th>Trạng thái</th>
+                            <th>Cán bộ</th>
+                            <!-- <th>Trạng thái</th> -->
+                            <?php
+                            if (isset($_SESSION['admin_login']) && $_SESSION['admin_login']['role'] == 0) { ?>
+                                <th>Trạng thái</th>
+                            <?php }
+                            ?>
                             <th>Số lượng</th>
                             <th>Hình ảnh</th>
                             <th>Danh mục</th>
@@ -45,7 +64,13 @@
                                     <td width="150"><?php echo $product->name; ?></td>
                                     <td><?php echo number_format($product->price_unit); ?>vnđ</td>
                                     <td><?php echo $product->thoi_gian; ?></td>
-                                    <td><span id="<?php echo $product->id ?>" class="badge btn_status_product<?php echo $product->id ?> btn_status_product badge-sm <?php echo ($product->status == 1) ? 'badge-danger' : 'badge-secondary'  ?>"><?php echo ($product->status == 1) ? "Hiển thị" : "Không hiển thị"; ?></span></td>
+                                    <td><?php echo $product->can_bo; ?></td>
+                                    <?php
+                                    if (isset($_SESSION['admin_login']) && $_SESSION['admin_login']['role'] == 0) { ?>
+                                        <td><span id="<?php echo $product->id ?>" class="badge btn_status_product<?php echo $product->id ?> btn_status_product badge-sm <?php echo ($product->status == 1) ? 'badge-danger' : 'badge-secondary'  ?>"><?php echo ($product->status == 1) ? "Hiển thị" : "Không hiển thị"; ?></span></td>
+                                    <?php }
+                                    ?>
+
                                     <td><?php echo $product->quantity; ?></td>
                                     <td>
                                         <?php
@@ -60,7 +85,7 @@
                                             <a href="index.php?url=Product/edit/<?php echo $product->id; ?>" class="btn btn-sm btn-danger">Edit</a>
                                             <button class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#btn_delete_product<?php echo $product->id ?>">Delete</button>
                                             <button type="button" onclick="exportExcel(<?= $product->id ?>)" class="btn btn-success">
-                                                <i class="fa fa-file-excel-o"></i> Export User Register
+                                                <i class="fa fa-file-excel-o"></i> Export User Register List
                                             </button>
 
 

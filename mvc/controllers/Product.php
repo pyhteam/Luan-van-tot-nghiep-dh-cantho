@@ -21,7 +21,7 @@ use Helper\ExcelHelper;
             
             $count_product = json_decode($this->product->count_product());
             
-            $number_display = 6;
+            $number_display = 5;
             $page_number = ceil($count_product/$number_display);
 
             $process_url = new process_url();
@@ -46,7 +46,7 @@ use Helper\ExcelHelper;
                 'page_index'    => $page_index
             ]);
             
-        }
+        } 
 
         public function create(){
             $categories = $this->category->getList();
@@ -112,7 +112,7 @@ use Helper\ExcelHelper;
                     //5 image
                 $error['image'] = array();
                 if($_FILES['image']['name'][0] == ""){
-                    array_push($error['image'],"Vui lòng chọn hình ảnh");
+                    array_push($error['image'],"");
                     $test_validate = true;
                 }
 
@@ -156,6 +156,7 @@ use Helper\ExcelHelper;
                     
                     $image              = "";
                     $thoi_gian = $_POST['thoi_gian'];
+                    $can_bo = $_POST['can_bo'];
 
                     $date = date_create();
                     $id = date_timestamp_get($date);    //id san pham
@@ -189,7 +190,7 @@ use Helper\ExcelHelper;
 
                     
 
-                    $result =  $this->product->insert($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$created_at,$updated_at,$thoi_gian);
+                    $result =  $this->product->insert($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$created_at,$updated_at,$thoi_gian,$can_bo);
                     $productes = $this->product->getList();
                     $productes = json_decode($productes);
                     $message = ($result=='true')?"Thêm mới sản phẩm thành công":"Lỗi thêm mới sản phẩm";
@@ -268,6 +269,7 @@ use Helper\ExcelHelper;
             $quantity           = isset($_POST['quantity'])?$_POST['quantity']:$product_edit->quantity;
             $updated_at         = date('Y-m-d H:i:s');
             $thoi_gian = isset($_POST['thoi_gian'])?$_POST['thoi_gian']:$product_edit->thoi_gian;
+            $can_bo = isset($_POST['can_bo'])?$_POST['can_bo']:$product_edit->can_bo;
 
             // xu li image
             if($_FILES['image']['name'][0] != ""){
@@ -321,7 +323,7 @@ use Helper\ExcelHelper;
 
 
             // print_r($updated_at);
-            $result =  $this->product->update($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$updated_at,$thoi_gian);
+            $result =  $this->product->update($id,$name,$price_unit,$description,$status,$quantity,$pdf,$image,$cat_id,$updated_at,$thoi_gian,$can_bo);
             if($result == "true"){
                 $productes = $this->product->getList();
                 $productes = json_decode($productes);
@@ -356,6 +358,7 @@ use Helper\ExcelHelper;
             echo json_encode($data);
         }
 
+        
 
     public function exportExcel()
     {
@@ -367,28 +370,29 @@ use Helper\ExcelHelper;
             $dataList = [];
             foreach ($originalDataList as $key => $item) {
                 $res = [
-                    "id" => $item['id'],
-                    "user_id" => $item['user_id'],
-                    "full_name" => $item['full_name'],
-                    "phone" => $item['phone'],
-                    "email" => $item['email'],
-                    "status" => $item['status'],
-                    "created_at" => $item['created_at'],
-                    "updated_at" => $item['updated_at'],
-                    "passport" => $item['passport'],
-                    "av" => $item['av'],
-                    "hoc_bong" => $item['hoc_bong'],
-                    "diemtb" => $item['diemtb'],
-                    "diemtl" => $item['diemtl'],
-                    "trao_doi" => $item['trao_doi'],
-                    "nckh" => $item['nckh'],
-                    "ma_lop" => $item['ma_lop'],
-                    "nganh" => $item['nganh'],
-                    "ngay_sinh" => $item['ngay_sinh'],
-                    "hinh_thuc" => $item['hinh_thuc'],
-                    "image" => $item['image'],
-                    "name" => $item['name'],
-                    "product_id" => $item['product_id']
+                    "Id" => $item['id'],
+                    // "user_id" => $item['user_id'],
+                    "Họ tên" => $item['full_name'],
+                    "Số điện thoại" => $item['phone'],
+                    "Email" => $item['email'],
+                    // "status" => $item['status'],
+                    // "created_at" => $item['created_at'],
+                    // "updated_at" => $item['updated_at'],
+                    "Passport" => $item['passport'],
+                    "Tiếng anh" => $item['av'],
+                    "Học bổng" => $item['hoc_bong'],
+                    "Điểm trung bình" => $item['diemtb'],
+                    "Điểm tích lũy" => $item['diemtl'],
+                    // "trao_doi" => $item['trao_doi'],
+                    // "nckh" => $item['nckh'],
+                    "Lớp" => $item['ma_lop'],
+                    "Nghành" => $item['nganh'],
+                    "Ngày sinh" => $item['ngay_sinh'],
+                    // "hinh_thuc" => $item['hinh_thuc'],
+                    // "image" => $item['image'],
+                    "Tên chương trình" => $item['name'],
+                    // "product_id" => $item['product_id'],
+                    "Cán bộ phụ trách" => $item['can_bo']
                 ];
                 array_push($dataList, $res);
             }

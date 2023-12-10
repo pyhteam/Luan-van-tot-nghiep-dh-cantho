@@ -69,8 +69,10 @@ class UserModel extends DB{
         
     }
 
-    public function update($user_name,$full_name,$email,$phone,$country,$conscious,$district,$commune,$address_detail,$updated_at,$image,$id,$ma_lop,$nganh,$ngay_sinh,$khoa){
-        $query = "UPDATE user SET user_name='$user_name', full_name='$full_name',email='$email',phone='$phone',country='$country',conscious='$conscious', district='$district',commune='$commune',address_detail='$address_detail', updated_at='$updated_at',image = '$image', ma_lop='$ma_lop', nganh='$nganh', ngay_sinh='$ngay_sinh', khoa = '$khoa' WHERE id = '$id'";
+    public function update($user_name,$full_name,$email,$phone,$country,$conscious,$district,$commune,$address_detail,$updated_at,$image,$ngay_sinh,$id){
+        $query = "UPDATE user SET user_name='$user_name', full_name='$full_name',email='$email',phone='$phone',country='$country',conscious='$conscious', district='$district',commune='$commune',address_detail='$address_detail', updated_at='$updated_at',image = '$image', ngay_sinh = '$ngay_sinh' WHERE id = '$id'";
+        // echo json_encode($query);
+        // die();
         $result = false;
         if($this->con->query($query)){
             $result = true;
@@ -83,4 +85,32 @@ class UserModel extends DB{
         $result = $this->con->query($query);
         return json_encode($result->rowCount());
     }
+
+    public function getList_limit(){
+        $query = 'SELECT * FROM user order by updated_at DESC LIMIT 8';
+        $result = $this->con->query($query);
+        $arr = array();
+        if($result->rowCount()){
+            while($row_user_item = $result->fetch()){
+                $user_id = $row_user_item['id'];
+                array_push($arr,$row_user_item);
+            }
+        }
+        return json_encode($arr);
+    }
+
+    public function getListLimit($start_in,$number_display){
+        $query = "SELECT * FROM user order by updated_at DESC limit $start_in,$number_display";
+       
+        $result = $this->con->query($query);
+        $arr = array();
+        if($result->rowCount() > 0){
+            while($row_user_item = $result->fetch()){
+                $user_id = $row_user_item['id'];
+                array_push($arr,$row_user_item);
+            }
+        }
+        return  json_encode($arr);
+    }
+
 }

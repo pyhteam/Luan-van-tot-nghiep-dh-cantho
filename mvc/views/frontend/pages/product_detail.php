@@ -43,6 +43,7 @@
                 <div>
                     <!-- <p><b>Thời gian chuyến đi:</b></p> -->
                 <p class="product_detail_thoi_gian"><b>Thời gian chuyến đi:</b>&nbsp;&nbsp;<?php echo isset($data['product_detail'])?$data['product_detail']->thoi_gian:"" ?></p>
+                <p class="product_detail_can_bo"><b>Cán bộ phụ trách chuyến đi:</b>&nbsp;&nbsp;<?php echo isset($data['product_detail'])?$data['product_detail']->can_bo:"" ?></p>
                 </div>
                 <hr>
                 <p class="product_detail_description"><?php echo isset($data['product_detail'])?$data['product_detail']->description:"" ?></p>

@@ -10,31 +10,31 @@
 </div>
 <?php } ?>
 <div class="row mb-5 text-white">
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info px-2">
-            <div class="inner text-white">
-                <h3><?php echo $data['total_order'] ?></h3>
-                <p>Total Register</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-bag"></i>
-            </div>
-            <a href="index.php?url=Order" class="small-box-footer text-white btn btn-sm btn-primary text-center">More info</a>
-        </div>
-    </div>
     <!-- ./col -->
     <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-success px-2">
+        <div class="small-box bg-primary px-2">
             <div class="inner text-white">
-                <h3><?php echo $data['total_user'] ?></h3>
-                <p>Total User</p>
+                <h3><?php echo $data['total_product'] ?></h3>
+                <p style="font-size: 18px;">Tổng chương trình</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="index.php?url=User" class="small-box-footer text-white btn btn-sm btn-primary text-center">More info</a>
+            <a href="index.php?url=Product" class="small-box-footer text-white btn btn-sm btn-secondary text-center"style="font-style: italic;" >Xem thêm</a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger px-2">
+            <div class="inner text-white">
+                <h3><?php echo $data['total_order'] ?></h3>
+                <p style="font-size: 18px;">Tổng SV đăng ký</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="index.php?url=Order" class="small-box-footer text-white btn btn-sm btn-secondary text-center" style="font-style: italic;">Xem thêm</a>
         </div>
     </div>
     <!-- ./col -->
@@ -42,13 +42,39 @@
         <!-- small box -->
         <div class="small-box bg-warning px-2">
             <div class="inner text-white">
-                <h3><?php echo $data['total_product'] ?></h3>
-                <p>Total Program</p>
+                <h3><?php echo $data['total_user'] ?></h3>
+                <p style="font-size: 18px;">Tổng sinh viên</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="index.php?url=Product" class="small-box-footer text-white btn btn-sm btn-primary text-center">More info</a>
+            <a href="index.php?url=User" class="small-box-footer text-white btn btn-sm btn-secondary text-center" style="font-style: italic;">Xem thêm</a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info px-2">
+            <div class="inner text-white">
+                <h3><?php echo $data['total_product'] ?></h3>
+                <p style="font-size: 18px;">Tổng đối tác quốc tế</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="index.php?url=Partner" class="small-box-footer text-white btn btn-sm btn-secondary text-center" style="font-style: italic;">Xem thêm</a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success px-2">
+            <div class="inner text-white">
+                <h3><?php echo $data['total_product'] ?></h3>
+                <p style="font-size: 18px;">Tổng danh sách</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="index.php?url=Slider" class="small-box-footer text-white btn btn-sm btn-secondary text-center" style="font-style: italic;">Xem thêm</a>
         </div>
     </div>
     <!-- ./col -->

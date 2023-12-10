@@ -236,10 +236,12 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         <td class="text-center">
                             <img style="height: 250px;" src="./public/uploads/<?php echo $data['product_detail']->image[0] ?>" alt="">
+                            <br><br>
+                            <p><b>Cán bộ phụ trách dẫn chuyến đi: </b><?php echo $data['product_detail']->can_bo ?></p>
                         </td>
+                        
                     </tbody>
 
                 </table>

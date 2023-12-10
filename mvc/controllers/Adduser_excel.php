@@ -63,6 +63,7 @@ class Adduser_excel extends Controller
                             array_push($errors, $username);
                             continue;
                         }
+                        if($item->email == "" || $item->email ==null) continue;
 
                         $user = [
                             'user_name' => $username,
@@ -94,7 +95,6 @@ class Adduser_excel extends Controller
                             // send mail
                             foreach ($data as $item) {
 
-                                // waiting 2s    
                                 $mailHelper = new SendMail();
                                 $to = $item['email'];
                                 $subject = 'Thông tin tài khoản';
@@ -104,6 +104,7 @@ class Adduser_excel extends Controller
                                     'password' => $item['password'],
                                 ];
                                 $mailHelper->sendEmailWithTemplate($to, $subject, $templatePath, $dataSendMail);
+                                // wating 2s fo not spam mail
                                 sleep(2);
                             }
 

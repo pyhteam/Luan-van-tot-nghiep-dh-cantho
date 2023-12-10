@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title>HTQL</title>
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <!-- Bootstrap 4 -->
@@ -43,20 +43,9 @@
     <!--<div class="loader"></div>-->
     <!--</div>-->
     <div class="container-fluid mb-5">
-        <div class="jumbotron jumbotron-fluid" style="background-image: url(./public/frontend/images/nen.png); height:160px; width:91%; margin-left:60px">
-            <!-- <div class="container">
-             <h1 class="text-center">Hệ thống quản lý sinh viên trao đổi nước ngoài</h1> 
-            <p style="color: white;" class="text-center"><a href="index.php?url=Home/index" class="text-link1" style="color: white;font-weight: bold;">Trang chủ<a> > Đăng nhập</p>
-        </div> -->
-        </div>
-        <!-- <div class="container"> -->
-        <!-- <h1 class="text-center">Hệ thống quản lý sinh viên trao đổi nước ngoài</h1> -->
-        <!-- <p class="text-center" style="color:blue">
-                <a href="index.php?url=Home/index" class="text-link1" style="color:black"> Trang chủ </a> 
-                -> Đăng nhập</p> -->
-        <!-- <p class="text-center"><a href="index.php?url=Home/index" target="_blank" style="color:blue; font-weight: bold;"> Trở về trang chủ </a></p>
-        </div> -->
+        <div class="jumbotron jumbotron-fluid" style="background-image: url(./public/frontend/images/nen.png); height:160px; width:74%; margin-left:210px;"></div>
     </div>
+    
     <div class="container-fluid" style="margin-bottom: 200px;">
         <div class="container-cover">
             <div class="row">
@@ -90,7 +79,7 @@
                             <span class="text-danger"><?php echo isset($data['error']['email'][0]) ? $data['error']['email'][0] : "" ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+                            <label for="exampleInputPassword1">Mật khẩu <span class="text-danger">*</span></label>
                             <input type="password" value="<?php echo isset($data['result_old']['password']) ? $data['result_old']['password'] : '' ?>" name="password" class="form-control" id="exampleInputPassword1">
                             <span class="text-danger"><?php echo isset($data['error']['password'][0]) ? $data['error']['password'][0] : "" ?></span>
                         </div>

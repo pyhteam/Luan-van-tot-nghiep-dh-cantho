@@ -32,7 +32,8 @@
                         <form action="#" method="POST" enctype="multipart/form-data">
                             <input type="file" name="import_file" class="form-control" />
                             <a href="/resources/template-excel/TemplateImport-User.xlsx" class="btn btn-success mt-3">Tải file mẫu</a>
-                            <button type="button" name="save_excel_data" onclick="importFileExcel()" class="btn btn-primary mt-3">Upload</button>
+                            <button type="button" id="save_excel_data" name="save_excel_data" onclick="importFileExcel()" class="btn btn-primary mt-3">Tải lên</button>
+                            <a href="index.php?url=Admin/index" class="btn btn-danger mt-3" style="background-color: red; color:white;">Hủy</a>
                         </form>
 
                     </div>
@@ -56,6 +57,9 @@
                 data: formData,
                 contentType: false,
                 processData: false,
+                beforeSend: function(res){
+                    //$('#save_excel_data').attr()
+                },
                 success: function(response) {
                     console.log(response);
                     if (response.success) {

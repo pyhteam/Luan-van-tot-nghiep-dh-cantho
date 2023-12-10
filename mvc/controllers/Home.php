@@ -11,6 +11,7 @@
         public $blog_categoryofblog;
         public $blog_tags;
         public $comment_pro;
+        public $user;
 
         public function __construct()
         {
@@ -98,7 +99,7 @@
             $product_detail->cat_name = $category_of_product_detail->name;
             $list_product_relate = json_decode($this->product->get_list_relate($id,$category_of_product_detail->id));
             $categories = json_decode($this->category->getList());
-            $list_comment = json_decode($this->comment_pro->getList($id));  
+            // $list_comment = json_decode($this->comment_pro->getList($id));  
 
             
             $total_cart = 0;
@@ -113,7 +114,6 @@
                 'product_detail'        => $product_detail,
                 'list_product_relate'   => $list_product_relate,
                 'categories'            => $categories,
-                'list_comment'          => $list_comment,
                 'total_cart'    => $total_cart
             ]);
         }
@@ -174,8 +174,6 @@
         public function blog(){
             $categories = json_decode($this->category->getList());
             $list_blog = json_decode($this->blog->getList());
-            $list_categoryofblog = json_decode($this->categoryofblog->getList());
-            $list_tags = json_decode($this->tags->getList());
             $total_cart = 0;
             if(isset($_SESSION['cart'])){
                 foreach($_SESSION['cart'] as $cart){
@@ -209,8 +207,44 @@
                 'page'                  => 'frontend/pages/blog',
                 'categories'            => $categories,
                 'list_blog'             => $list_blog,
-                'list_categoryofblog'   => $list_categoryofblog,
-                'list_tags'             => $list_tags,
+                'total_cart'    => $total_cart,
+                'total_page_number' => $total_page_number,
+                'page_index'        => 1
+            ]);
+        }
+
+        public function slider(){
+            $list_slider = json_decode($this->slider->getList());
+            $total_cart = 0;
+            if(isset($_SESSION['cart'])){
+                foreach($_SESSION['cart'] as $cart){
+                    $total_cart+=$cart['quatity'];
+                }
+            }
+            //pagination 
+             $count_slider  = json_decode($this->slider->count_slider());
+            
+             $number_display = 4;
+             $total_page_number = ceil($count_slider/$number_display);
+            
+             $process_url = new process_url();
+             $is_page = json_decode($process_url->is_page($_GET['url']));
+             // url chua page
+             if($is_page){
+                 $page_index =  json_decode($process_url->index_page($_GET['url']));
+                 $start_in = ($page_index-1)*$number_display;
+                 $list_slider = json_decode($this->slider->getListlimit($start_in,$number_display));
+             }else{ //url khong chua page
+                 $page_index=1;
+                 $start_in = 0;
+                 $list_slider = json_decode($this->slider->getListlimit($start_in,$number_display));
+             }
+            
+
+
+            $this->view('frontend/layout/master',[
+                'page'                  => 'frontend/pages/slider',
+                'list_slider'             => $list_slider,
                 'total_cart'    => $total_cart,
                 'total_page_number' => $total_page_number,
                 'page_index'        => 1
@@ -277,39 +311,6 @@
 
         }
 
-        public function blog_detail($id){
-            $total_cart = 0;
-            if(isset($_SESSION['cart'])){
-                foreach($_SESSION['cart'] as $cart){
-                    $total_cart+=$cart['quatity'];
-                }
-            }
-            $blog_detail = json_decode($this->blog->getId($id));
-            $categories = json_decode($this->category->getList());
-            $list_categoryofblog = json_decode($this->categoryofblog->getList());
-            $list_tags = json_decode($this->tags->getList());
-            $blog_detail->tags_names = array();
-            foreach($blog_detail->tags_ids as $tags_id){
-                $tags_detail_by_id = json_decode($this->tags->getId($tags_id));
-                array_push($blog_detail->tags_names,$tags_detail_by_id->name);
-            }
-            $blog_detail->catofblog_names = array();
-            foreach($blog_detail->cat_ids as $cat_id){
-                $catofblog_detail_by_id = json_decode($this->categoryofblog->getId($cat_id));
-                array_push($blog_detail->catofblog_names,$catofblog_detail_by_id->name);
-            }
-
-
-            $this->view('frontend/layout/master',[
-                'page'                  => 'frontend/pages/blog_detail',
-                'categories'            => $categories,
-                'list_categoryofblog'   => $list_categoryofblog,
-                'list_tags'             => $list_tags,
-                'blog_detail'           => $blog_detail,
-                'total_cart'    => $total_cart
-
-            ]);
-        }
 
         public function contact(){
             $total_cart = 0;
@@ -581,17 +582,26 @@
             $address_detail = isset($_POST['address_detail'])?$_POST['address_detail']:"";
             $updated_at = Date('Y-m-d H:i:s');
             $image = $user_login->image;
+            $ngay_sinh =  $_POST['ngay_sinh'];
 
             if($_FILES['image']['name']!=""){
                
                 //Xoa anh cu
                 //neu ton tai anh cu
+                // if($user_login->image != ""){
+                //     $path_image_user = './public/uploads/'.$user_login->image;
+                //     if(file_exists($path_image_cat)){
+                //         unlink($path_image_cat);
+                //     }
+                // }
+
                 if($user_login->image != ""){
                     $path_image_user = './public/uploads/'.$user_login->image;
-                    if(file_exists($path_image_cat)){
-                        unlink($path_image_cat);
+                    if(file_exists($path_image_user)){
+                        unlink($path_image_user);
                     }
                 }
+                
 
 
                 //upload anh moi
@@ -610,7 +620,7 @@
             
             
 
-            $result = json_decode($this->user->update($user_name,$full_name,$email,$phone,$country,$conscious,$district,$commune,$address_detail,$updated_at,$image,$user_login->id));
+            $result = json_decode($this->user->update($user_name,$full_name,$email,$phone,$country,$conscious,$district,$commune,$address_detail,$updated_at,$image,$ngay_sinh,$user_login->id));
             $_SESSION['user_login']['id'] = $user_id;
             $_SESSION['user_login']['name'] = $user_name;
             $_SESSION['user_login']['avatar'] = $image;
@@ -619,33 +629,6 @@
             if($result){
                 header("Location: index.php?url=Home/get_user_info");
             }
-        }
-
-
-
-        function SayHi(){
-            echo "Home - SayHi";
-        }
-
-        function show(){
-            $teo = $this->model('SinhVienModel');
-            echo $teo->getSV();
-        }
-        
-        function aodep(){
-            $students = $this->model('SinhVienModel');
-            $this->view('aodep',[
-                'page'  => 'about',
-                'color' => 'green',
-                'students' => $students->getListSV()
-            ]);
-        }
-
-        function aoxau(){
-            $this->view('aodep',[
-                'page'  => 'contact',
-                'color' => 'red'
-            ]);
         }
 
 

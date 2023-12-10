@@ -30,7 +30,7 @@
             
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'Send mail login';
+                $mail->Subject = 'Here is the subject';
                 $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             
@@ -39,65 +39,6 @@
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         }
-
-        //Thêm mới
-        public function sendLoginInfo($email,$password) {
-            $mail = new PHPMailer(true);
-            $mail->CharSet = 'UTF-8'; 
-            try {
-                
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'duyenb1910046@student.ctu.edu.vn';                     //SMTP username
-                $mail->Password   = 'otswwnlkdgcybkmk';                               //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-                //Recipients
-                $mail->setFrom('duyenb1910046@student.ctu.edu.vn', 'Mailer');
-                $mail->addAddress('nnmduyen01@gmail.com','Duyen');     //Add a recipient
-                
-                
-                //Content
-               
-                $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'Thông tin đăng nhập';
-                $mail->Body    = '<!DOCTYPE html>
-                <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Thông tin đăng nhập</title>
-                    </head>
-                    <body>
-                        <table border="0" cellpadding="0" cellspacing="0" style="width:750px;margin:40px auto;padding:0">
-                            <colgroup>
-                                <col style="width:100%">
-                            </colgroup>
-                            <tbody>
-                            <tr
-                            style="margin:0;padding:15px 0 20px;border-left:1px solid #cdc197;border-right:1px solid #cdc197;background:#efebdb;font-size:14px;font-family:Arial,Helvetica,sans-serif;color:#1d1b1c;line-height:22px;text-align:center">
-                            Email đăng nhập:<strong
-                                style="margin:0;padding:0;font-size:16px;font-weight:bold"><?php echo $email?></strong>
-                             </tr>
-                             <tr
-                            style="margin:0;padding:15px 0 20px;border-left:1px solid #cdc197;border-right:1px solid #cdc197;background:#efebdb;font-size:14px;font-family:Arial,Helvetica,sans-serif;color:#1d1b1c;line-height:22px;text-align:center">
-                            Mật khẩu:<strong
-                                style="margin:0;padding:0;font-size:16px;font-weight:bold"><?php echo $password ?></strong>
-                             </tr>
-                            </tbody>
-                        </table>
-                    </body>
-                </html>';
-                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-            
-                $mail->send();
-                echo 'Message has been sent';
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
-          }
 
         public function contact_sendMail($full_name,$email,$content){
             $mail = new PHPMailer(true);
@@ -115,7 +56,7 @@
             
                 //Recipients
                 $mail->setFrom($email, $full_name);
-                $mail->addAddress('duyenb1910046@student.ctu.edu.vn','Mailer');     //Add a recipient
+                $mail->addAddress('duyenb1910046@student.ctu.edu.vn','Admin');     //Add a recipient
               
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
@@ -143,7 +84,7 @@
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465 ;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                 //Recipients
-                $mail->setFrom('duyenb1910046@student.ctu.edu.vn', 'Mailer');
+                $mail->setFrom('duyenb1910046@student.ctu.edu.vn', 'HTQL TRAO ĐỔI SINH VIÊN ĐI NƯỚC NGOÀI TRƯỜNG CNTT&TT');
                 $mail->addAddress($order_info['email'], $order_info['full_name']);     //Add a recipient
                 
                 

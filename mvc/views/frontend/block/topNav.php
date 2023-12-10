@@ -19,8 +19,6 @@
                                     <a href="index.php?url=Home/category/<?php echo $category->id; ?>"><?php echo $category->name; ?></a>
                             <?php }
                             } ?>
-
-
                         </div>
                     </a>
                 </li>
@@ -28,6 +26,9 @@
                 <!-- Blog -->
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?url=Home/blog">Tiêu chí</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?url=Home/slider">Danh sách</a>
                 </li>
                 <!--
                 <li class="nav-item">
@@ -85,13 +86,14 @@
                         <?php } ?>
                         <?php echo isset($_SESSION['user_login']['name']) ? $_SESSION['user_login']['name'] : ""; ?>
                     </a>
-                    <div class="box_login text-center p-1" style="width: 200px;">
+                    <div class="box_login text-center p-1" style="width: 150px;">
                         <!-- <p class="text-center">Login</p> -->
                         <?php
                         if (isset($_SESSION['user_login'])) { ?>
-                            <button onclick="
+                            <!-- <button onclick="
                                     window.location.href='index.php?url=Home/get_user_info'
-                                " style="cursor: pointer" class="text-center mt-3 ">Thông tin cá nhân</button><br>
+                                " style="cursor: pointer" class="text-center mt-3 ">Thông tin cá nhân</button><br> -->
+                            <a href='index.php?url=Home/get_user_info' style="cursor: pointer" class="text-center mt-3 ">Thông tin cá nhân</a><br>
                             <hr class="my-1">
                             <a href="index.php?url=History_Order/index" style="cursor: pointer" class="text-center mt-3 ">Lịch sử đăng ký</a><br>
                             <hr class="my-1">
