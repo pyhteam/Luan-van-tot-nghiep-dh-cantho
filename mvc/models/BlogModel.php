@@ -1,7 +1,12 @@
 <?php
     class BlogModel extends DB{
-        public function getList(){
-            $query = 'SELECT * FROM blogs order by updated_at DESC';
+        public function getList($isActive = null){
+            if($isActive != null){
+                $query = "SELECT * FROM blogs WHERE status = $isActive ORDER BY updated_at DESC";
+            }else{
+                 $query = "SELECT * FROM blogs ORDER BY updated_at DESC";
+            }
+
             $result = $this->con->query($query);
             $arr = array();
             if($result->rowCount() > 0){

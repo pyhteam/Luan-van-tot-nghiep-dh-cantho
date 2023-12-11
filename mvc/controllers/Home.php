@@ -29,12 +29,12 @@
 
         function index(){
             $isShow = true;
-            $list_slider = json_decode($this->slider->getList());
+            $list_slider = json_decode($this->slider->getList(1));
             $list_product = json_decode($this->product->getList_limit($isShow));
-            $list_category = json_decode($this->category->getListLimit4());
-            $categories = json_decode($this->category->getList());
+            $list_category = json_decode($this->category->getListLimit4(1));
+            $categories = json_decode($this->category->getList(1));
 
-            $list_blog = json_decode($this->blog->getList());
+            $list_blog = json_decode($this->blog->getList(1));
             foreach($list_category as $category){
                 $category->qty_product = json_decode($this->product->qty_product_by_cat($category->id));
             }
@@ -214,7 +214,7 @@
         }
 
         public function slider(){
-            $list_slider = json_decode($this->slider->getList());
+            $list_slider = json_decode($this->slider->getList(1));
             $total_cart = 0;
             if(isset($_SESSION['cart'])){
                 foreach($_SESSION['cart'] as $cart){
@@ -233,11 +233,11 @@
              if($is_page){
                  $page_index =  json_decode($process_url->index_page($_GET['url']));
                  $start_in = ($page_index-1)*$number_display;
-                 $list_slider = json_decode($this->slider->getListlimit($start_in,$number_display));
+                 $list_slider = json_decode($this->slider->getListlimit($start_in,$number_display,1));
              }else{ //url khong chua page
                  $page_index=1;
                  $start_in = 0;
-                 $list_slider = json_decode($this->slider->getListlimit($start_in,$number_display));
+                 $list_slider = json_decode($this->slider->getListlimit($start_in,$number_display,1));
              }
             
 
@@ -334,8 +334,8 @@
                     $total_cart+=$cart['quatity'];
                 }
             }
-            $categories = json_decode($this->category->getList());
-            $list_blog = json_decode($this->blog->getList());
+            $categories = json_decode($this->category->getList(1));
+            $list_blog = json_decode($this->blog->getList(1));
 
             //pagination products
             $count_product  = json_decode($this->product->count_product());
@@ -349,11 +349,11 @@
             if($is_page){
                 $page_index =  json_decode($process_url->index_page($_GET['url']));
                 $start_in = ($page_index-1)*$number_display;
-                $list_product = json_decode($this->product->getListlimit($start_in,$number_display));
+                $list_product = json_decode($this->product->getListlimit($start_in,$number_display,true));
             }else{ //url khong chua page
                 $page_index=1;
                 $start_in = 0;
-                $list_product = json_decode($this->product->getListlimit($start_in,$number_display));
+                $list_product = json_decode($this->product->getListlimit($start_in,$number_display,true));
             }
 
 

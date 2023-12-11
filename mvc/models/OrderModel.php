@@ -131,6 +131,25 @@
             return json_encode($arr);
         }
 
+        // filter
+        public function filter($params){
+            $query = "SELECT * FROM tbl_order WHERE 1";
+            foreach ($params as $key => $value) {
+                if (isset($value) && $value !== '') {
+                    $query .= " AND $key = ".$value;
+                }
+            }
+            $result = $this->con->query($query);
+            $arr = array();
+            if($result->rowCount() > 0){
+                while($row = $result->fetch()){
+                    $row['order_detail'] = array();
+                    array_push($arr, $row);
+                }
+            }
+            return $arr;
+        }
+
         public function getListLimit_hocbong_khong($start_in,$number_display){
             $query = "SELECT * FROM tbl_order where hoc_bong = '1' order by created_at DESC limit $start_in,$number_display";
             $result = $this->con->query($query);

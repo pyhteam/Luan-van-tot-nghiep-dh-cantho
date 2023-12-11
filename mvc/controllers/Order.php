@@ -4,7 +4,9 @@ require_once('./mvc/helper/MailHelper.php');
 // require 'vendor/autoload.php';
 
 use Dompdf\Dompdf;
+use FontLib\Table\Type\head;
 use Helper\SendMail;
+
 class Order extends Controller
 {
     public $slider;
@@ -476,7 +478,7 @@ class Order extends Controller
 
     public function status1()
     {
-       
+
         $count_order  = json_decode($this->order->count_order());
         $number_display = 6;
         $total_page_number = ceil($count_order / $number_display);
@@ -505,10 +507,33 @@ class Order extends Controller
             'page_index'    => $page_index
         ]);
     }
-    
+
+    // filter 
+    public function filter()
+    {
+        // check medthod GET
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $params = [
+                'hoc_bong' => $_POST['hoc_bong'],
+                'av' => $_POST['av'],
+                'nckh' => $_POST['nckh'],
+                'hinh_thuc' => $_POST['hinh_thuc'],
+                'status' => $_POST['status'],
+            ];
+            $orders  = $this->order->filter($params);
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'items' => $orders
+            ]);
+        }
+    }
+
+
+
     public function status2()
     {
-       
+
 
         $count_order  = json_decode($this->order->count_order());
         $number_display = 6;
@@ -555,7 +580,7 @@ class Order extends Controller
         $subject = 'Đăng ký tham gia của bạn đã được xác nhận';
         $templateData = [
             'name' => $order->full_name,
-            'link' => 'http://'. $_SERVER['HTTP_HOST'] . '/index.php?url=Order/confirm&order_id=' . $order_id
+            'link' => 'http://' . $_SERVER['HTTP_HOST'] . '/index.php?url=Order/confirm&order_id=' . $order_id
         ];
         $mail->sendEmailWithTemplate($to, $subject, $template, $templateData);
 
@@ -691,41 +716,43 @@ class Order extends Controller
         exit(0);
     }
 
-    public function review_search(){
+    public function review_search()
+    {
         $search_key = $_GET['search_key'];
         $list_order_need_find = json_decode($this->order->list_order_need_find($search_key)); // Thay đổi tên hàm và table ở đây
         $html = "";
-        foreach($list_order_need_find as $order){ // Thay đổi biến $product thành $order ở đây
+        foreach ($list_order_need_find as $order) { // Thay đổi biến $product thành $order ở đây
             $html .= '<li style="display:block;" class="mt-3">
-                <a style="color: #000 !important" href="index.php?url=Home/order_detail/'.$order->id.'">
-                    <img height="50" width="50" class="float-left mr-3" src="./public/uploads/'.$order->image[0].'" alt="">
+                <a style="color: #000 !important" href="index.php?url=Home/order_detail/' . $order->id . '">
+                    <img height="50" width="50" class="float-left mr-3" src="./public/uploads/' . $order->image[0] . '" alt="">
                 </a>
                 <span>
-                    <a style="color: #b19361; font-size: 14px;text-decoration: none" href="index.php?url=Home/order_detail/'.$order->id.'" class="">'.$order->name.'</a>
+                    <a style="color: #b19361; font-size: 14px;text-decoration: none" href="index.php?url=Home/order_detail/' . $order->id . '" class="">' . $order->name . '</a>
                     <br>
-                    <span class="info_search_item">'.$order->created_at.'</span>
+                    <span class="info_search_item">' . $order->created_at . '</span>
                 </span>
             </li>';
         }
         echo $html;
     }
-    
 
-    public function search_order(){
+
+    public function search_order()
+    {
         $search_key = $_POST['search_key'];
         $total_cart = 0;
-        if(isset($_SESSION['cart'])){
-            foreach($_SESSION['cart'] as $cart){
-                $total_cart+=$cart['quatity'];
+        if (isset($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $cart) {
+                $total_cart += $cart['quatity'];
             }
         }
         $list_order = json_decode($this->order->list_order_need_find($search_key));
-      
-        $this->view('frontend/layout/master',[
+
+        $this->view('frontend/layout/master', [
             'page'                  => 'backend/Order/index',
             'list_order'          => $list_order,
             'total_cart'            => $total_cart,
-            'message_success'       => 'Kết quả tìm kiếm "'.$search_key.'"',
+            'message_success'       => 'Kết quả tìm kiếm "' . $search_key . '"',
         ]);
     }
 }

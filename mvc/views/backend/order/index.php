@@ -1,69 +1,78 @@
 <div class="title_left">
     <h3>Danh sách sinh viên đăng ký</h3>
 </div>
-<div class="row">
+<div class="row m-1">
     <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <label>
             Học bổng
-        </a>
+        </label>
 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="index.php?url=Order/hoc_bong">Có học bổng</a>
-            <a class="dropdown-item" href="index.php?url=Order/hoc_bong_khong">Không có học bổng</a>
-        </div>
+        <select class="form-control" id="hoc_bong" aria-labelledby="dropdownMenuLink">
+            <option value="">Tất cả</option>
+            <option <?= isset($_GET['hoc_bong']) && $_GET['hoc_bong'] == 0 ? 'selected' : '' ?> value="0">Có học bổng</option>
+            <option <?= isset($_GET['hoc_bong']) && $_GET['hoc_bong'] == 1 ? 'selected' : '' ?> value="1">Không học bổng</option>
+        </select>
     </div>
     <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <label>
             Chứng chỉ tiếng anh
-        </a>
+        </label>
 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="index.php?url=Order/av_b1">B1</a>
-            <a class="dropdown-item" href="index.php?url=Order/av_toeic">Toeic >= 450</a>
-            <a class="dropdown-item" href="index.php?url=Order/av_ielts">Ielts >= 4.5</a>
-        </div>
+        <select class="form-control" id="anh_van" aria-labelledby="dropdownMenuLink">
+            <option value="">Tất cả</option>
+            <option <?= isset($_GET['av']) && $_GET['av'] == 0 ? 'selected' : '' ?> value="0">B1</option>
+            <option <?= isset($_GET['av']) && $_GET['av'] == 1 ? 'selected' : '' ?> value="1">Toeic >= 450</option>
+            <option <?= isset($_GET['av']) && $_GET['av'] == 2 ? 'selected' : '' ?> value="2">Ielts >= 4.5</option>
+        </select>
     </div>
     <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <label>
             Nghiên cứu khoa học
-        </a>
+        </label>
 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="index.php?url=Order/nckh_0">Không tham gia NCKH và cũng không có bài báo</a>
-            <a class="dropdown-item" href="index.php?url=Order/nckh_1">Đã tham gia NCKH và đã nghiệm thu</a>
-            <a class="dropdown-item" href="index.php?url=Order/nckh_2">Đang tham gia NCKH, chưa nghiệm thu</a>
-            <a class="dropdown-item" href="index.php?url=Order/nckh_3">Có bài báo đăng trên các tạp chí</a>
-        </div>
+        <select class="form-control" id="nckh" aria-labelledby="dropdownMenuLink">
+            <option value="">Tất cả</option>
+            <option <?= isset($_GET['nckh']) && $_GET['nckh'] == 0 ? 'selected' : '' ?> value="0">Không tham gia NCKH và cũng không có bài báo</option>
+            <option <?= isset($_GET['nckh']) && $_GET['nckh'] == 1 ? 'selected' : '' ?> value="1">Đã tham gia NCKH và đã nghiệm thu</option>
+            <option <?= isset($_GET['nckh']) && $_GET['nckh'] == 2 ? 'selected' : '' ?> value="2">Đang tham gia NCKH, chưa nghiệm thu</option>
+            <option <?= isset($_GET['nckh']) && $_GET['nckh'] == 3 ? 'selected' : '' ?> value="3">Có bài báo đăng trên các tạp chí</option>
+        </select>
     </div>
     <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <label>
             Hình thức đi
-        </a>
+        </label>
 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_0">Học bổng</a>
-            <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_1">Tự túc</a>
-        </div>
+        <select class="form-control" id="hinh_thuc" aria-labelledby="dropdownMenuLink">
+            <option value="">Tất cả</option>
+            <option <?= isset($_GET['hinh_thuc']) && $_GET['hinh_thuc'] == 0 ? 'selected' : '' ?> value="0">Học bổng</option>
+            <option <?= isset($_GET['hinh_thuc']) && $_GET['hinh_thuc'] == 1 ? 'selected' : '' ?> value="1">Tự túc</option>
+        </select>
     </div>
     <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <label>
             Tình trạng đăng ký
-        </a>
+        </label>
 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="index.php?url=Order/status">Chưa duyệt</a>
-            <a class="dropdown-item" href="index.php?url=Order/status1">Đã thêm vào danh sách</a>
-            <a class="dropdown-item" href="index.php?url=Order/status2">SV đã xác nhận</a>
-        </div>
+        <select class="form-control" id="status" aria-labelledby="dropdownMenuLink">
+            <option value="">Tất cả</option>
+            <option <?= isset($_GET['status']) && $_GET['status'] == 0 ? 'selected' : '' ?> value="0">Duyệt</option>
+            <option <?= isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' ?> value="1">Đã thêm vào danh sách</option>
+            <option <?= isset($_GET['status']) && $_GET['status'] == 2 ? 'selected' : '' ?> value="2">SV đã xác nhận</option>
+        </select>
     </div>
-    <div><a href="index.php?url=Order/index" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i></a></div>
+    <div class="form-group">
+        <label for="">Filter</label> <br>
+        <button type="button" onclick="filter()" class="btn btn-primary" id="filter">Lọc</button>
+    </div>
+
     <div class="ml-4" style="position: fixed; top: 110px; right: 20px;">
-        <form method="POST" action="index.php?url=Order/search_order">
+        <form method="POST">
             <div class="input-group" style="width: 300px;">
                 <input type="text" id="search_key" name="search_key" class="form-control" placeholder="Tìm kiếm tên chương trình...">
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default ml-2" type="button" style="background-color: #0000FF;color:white;">Tìm</button>
-                 </span>
+                    <button type="buttom" class="btn btn-default ml-2" type="button" style="background-color: #0000FF;color:white;">Tìm</button>
+                </span>
             </div>
         </form>
     </div>
@@ -84,7 +93,6 @@
                                 <th class="text-center">Ngày sinh </th>
                                 <th class="text-center">Số passport</th>
                                 <th class="text-center">Thông tin chương trình</th>
-                                <!-- <th class="text-center">Thông tin liên lạc</th> -->
                                 <th class="text-center">Thông tin đăng ký</th>
                                 <th class="text-center">Nghiên cứu khoa học</th>
                                 <th class="text-center">Đi trao đổi</th>
@@ -93,7 +101,7 @@
                                 <th class="text-center">Tình trạng đăng ký</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="dataTable">
                             <?php
                             if (isset($data['list_order'])) {
                                 foreach ($data['list_order'] as $key => $order) { ?>
@@ -224,3 +232,85 @@
         </div>
     </div>
 </div>
+<script>
+    function filter() {
+        const dataFilter = {
+            hoc_bong: document.getElementById('hoc_bong').value,
+            av: document.getElementById('anh_van').value,
+            nckh: document.getElementById('nckh').value,
+            hinh_thuc: document.getElementById('hinh_thuc').value,
+            status: document.getElementById('status').value,
+        }
+        console.log(dataFilter);
+        // redirect to url
+        const url = "/index.php?url=Order/filter";
+        let params = '';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            application: 'json',
+            data: dataFilter,
+            success: function(res) {
+                console.log(res);
+                if(res.success) {
+                    let html = ``;
+                    res.items.forEach((item, index) => {
+                        html += `
+                            <tr>
+                                <th scope="row">${index + 1}</th>
+                                <td>${item.full_name}<br></td>
+                                <td>${item.ma_lop}</td>
+                                <td>${item.nganh}</td>
+                                <td>${item.ngay_sinh}</td>
+                                <td>${item.passport}</td>
+                                <td>
+                                    <img height="100" width="130" src="./public/uploads/${item.image}" alt="">
+                                    <br><br>
+                                    ${item.name}
+                                    <br><br>
+                                    <p><b>Cán bộ phụ trách:</b> ${item.can_bo}</p>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-6">Chứng chỉ tiếng anh</div>
+                                        <div class="col-md-6" style="font-weight: bold;">
+                                            ${item.av == 0 ? "B1" : item.av == 1 ? "Toeic >= 450" : "Ielts >= 4.5"}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Học bổng khuyến khích</div>
+                                        <div class="col-md-6" style="font-weight: bold;">${item.hoc_bong == 0 ? "Có" : "Không"}</div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Điểm trung bình</div>
+                                        <div class="col-md-6" style="font-weight: bold;">${item.diemtb}</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Điểm tích lũy</div>
+                                        <div class="col-md-6" style="font-weight: bold;">${item.diemtl}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    ${item.nckh == 0 ? "Không tham gia NCKH và cũng không có bài báo" : item.nckh == 1 ? "Đã tham gia NCKH và đã nghiệm thu" : item.nckh == 2 ? "Đang tham gia NCKH, chưa nghiệm thu" : "Có bài báo đăng trên các tạp chí"}
+                                </td>
+                                <td>${item.trao_doi}</td>
+                                <td>${item.hinh_thuc == 0 ? "Học bổng" : "Tự túc"}</td>
+                                <td>${item.created_at}</td>
+                                <td class="text-center">
+                                    <span id="${item.id}" style="cursor:pointer" class="order_status_confirm${item.id} ${item.status == 0 ? 'btn btn-sm btn-primary' : ''} btn_confirm_order">${item.status == 0 ? 'Duyệt' : item.status == 1 ? 'Đã thêm vào danh sách' : 'SV đã xác nhận'}</span>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    document.getElementById('dataTable').innerHTML = html;
+
+                }
+               
+            }
+        });
+    }
+</script>

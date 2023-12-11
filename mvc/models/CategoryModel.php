@@ -10,8 +10,12 @@
             return json_encode($kq);
         }
 
-        public function getList(){
-            $query = "SELECT * FROM categories ORDER BY updated_at DESC";
+        public function getList($isActive = null){
+            if($isActive != null){
+                $query = "SELECT * FROM categories WHERE status = $isActive ORDER BY updated_at DESC";
+            }else{
+                 $query = "SELECT * FROM categories ORDER BY updated_at DESC";
+            }
             $result = $this->con->query($query);
             $categories = array();
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
@@ -20,8 +24,12 @@
             return json_encode($categories);
         }
 
-        public function getListLimit4(){
-            $query = "SELECT * FROM categories limit 4";
+        public function getListLimit4($isActive = null){
+            if($isActive != null){
+                $query = "SELECT * FROM categories WHERE status = $isActive ORDER BY updated_at DESC LIMIT 4";
+            }else{
+                 $query = "SELECT * FROM categories limit 4";
+            }
             $result = $this->con->query($query);
             $categories = array();
             if($result->rowCount() >0){
