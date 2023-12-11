@@ -28,9 +28,9 @@
         }
 
         function index(){
-            
+            $isShow = true;
             $list_slider = json_decode($this->slider->getList());
-            $list_product = json_decode($this->product->getList_limit());
+            $list_product = json_decode($this->product->getList_limit($isShow));
             $list_category = json_decode($this->category->getListLimit4());
             $categories = json_decode($this->category->getList());
 
@@ -62,11 +62,11 @@
             if($is_page){
                 $page_index =  json_decode($process_url->index_page($_GET['url']));
                 $start_in = ($page_index-1)*$number_display;
-                $list_product = json_decode($this->product->getListlimit($start_in,$number_display));
+                $list_product = json_decode($this->product->getListlimit($start_in,$number_display,true));
             }else{ //url khong chua page
                 $page_index=1;
                 $start_in = 0;
-                $list_product = json_decode($this->product->getListlimit($start_in,$number_display));
+                $list_product = json_decode($this->product->getListlimit($start_in,$number_display,true));
             }
             
            

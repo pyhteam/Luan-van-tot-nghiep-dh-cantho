@@ -51,9 +51,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_0">Chưa duyệt</a>
-            <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_1">Đã thêm vào danh sách</a>
-            <a class="dropdown-item" href="index.php?url=Order/hinh_thuc_2">SV đã xác nhận</a>
+            <a class="dropdown-item" href="index.php?url=Order/status">Chưa duyệt</a>
+            <a class="dropdown-item" href="index.php?url=Order/status1">Đã thêm vào danh sách</a>
+            <a class="dropdown-item" href="index.php?url=Order/status2">SV đã xác nhận</a>
         </div>
     </div>
     <div><a href="index.php?url=Order/index" class="btn btn-secondary"><i class="fa fa-undo" aria-hidden="true"></i></a></div>

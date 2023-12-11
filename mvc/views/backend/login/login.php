@@ -38,6 +38,15 @@
 
                 <form action="index.php?url=Admin_Login/post_login" method="POST">
                     <h1>Đăng nhập</h1>
+                    <div class="form-group">
+                        <!--  check box -->
+                        <div class="form-group">
+                            <select class="form-control" name="partner">
+                                <option value="1">Đối tác</option>
+                                <option value="0">Admin</option>
+                            </select>
+                        </div>
+                    </div>
                     <div>
                         <span class="text-danger"><?php echo isset($data['error']['email'][0])?$data['error']['email'][0]:""; ?></span>
                         <input type="email" class="form-control" value="<?php echo isset($data['result_old']['email'])?$data['result_old']['email']:''; ?>" name="email" placeholder="Email"/>

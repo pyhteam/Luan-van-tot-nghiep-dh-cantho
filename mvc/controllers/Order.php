@@ -441,43 +441,7 @@ class Order extends Controller
         ]);
     }
 
-    // public function status()
-    // {
-    //     // $list_order = json_decode($this->order->getList(),true);
-
-    //     $count_order  = json_decode($this->order->count_order());
-    //     $number_display = 6;
-    //     $total_page_number = ceil($count_order / $number_display);
-    //     $process_url = new process_url();
-    //     $is_page = json_decode($process_url->is_page($_GET['url']));
-    //     // url chua page
-    //     $page_index = 1;
-    //     if ($is_page) {
-    //         $page_index =  json_decode($process_url->index_page($_GET['url']));
-    //         $start_in = ($page_index - 1) * $number_display;
-    //         $list_order = json_decode($this->order->getListLimit_status($start_in, $number_display), true);
-    //     } else { //url khong chua page
-    //         $start_in = 0;
-    //         $list_order = json_decode($this->order->getListLimit_status($start_in, $number_display), true);
-    //     }
-
-    //     foreach ($list_order as $key => $order) {
-    //         $list_order_detail = json_decode($this->order_detail->getList_by_orderid($order['id']), true);
-    //         $list_order[$key]['order_detail'] = $list_order_detail;
-    //     }
-
-    //     // echo json_encode($list_order);
-    //     // die();
-
-    //     $this->view('backend/layout/master', [
-    //         'page'          => 'backend/Order/index',
-    //         'list_order' => $list_order,
-    //         'total_page_number' => $total_page_number,
-    //         'page_index'    => $page_index
-    //     ]);
-    // }
-
-    public function status0()
+    public function status()
     {
         // $list_order = json_decode($this->order->getList(),true);
 
@@ -501,9 +465,6 @@ class Order extends Controller
             $list_order_detail = json_decode($this->order_detail->getList_by_orderid($order['id']), true);
             $list_order[$key]['order_detail'] = $list_order_detail;
         }
-
-        // echo json_encode($list_order);
-        // die();
 
         $this->view('backend/layout/master', [
             'page'          => 'backend/Order/index',
@@ -515,8 +476,7 @@ class Order extends Controller
 
     public function status1()
     {
-        // $list_order = json_decode($this->order->getList(),true);
-
+       
         $count_order  = json_decode($this->order->count_order());
         $number_display = 6;
         $total_page_number = ceil($count_order / $number_display);
@@ -537,9 +497,6 @@ class Order extends Controller
             $list_order_detail = json_decode($this->order_detail->getList_by_orderid($order['id']), true);
             $list_order[$key]['order_detail'] = $list_order_detail;
         }
-
-        // echo json_encode($list_order);
-        // die();
 
         $this->view('backend/layout/master', [
             'page'          => 'backend/Order/index',
@@ -551,7 +508,7 @@ class Order extends Controller
     
     public function status2()
     {
-        // $list_order = json_decode($this->order->getList(),true);
+       
 
         $count_order  = json_decode($this->order->count_order());
         $number_display = 6;
@@ -573,9 +530,6 @@ class Order extends Controller
             $list_order_detail = json_decode($this->order_detail->getList_by_orderid($order['id']), true);
             $list_order[$key]['order_detail'] = $list_order_detail;
         }
-
-        // echo json_encode($list_order);
-        // die();
 
         $this->view('backend/layout/master', [
             'page'          => 'backend/Order/index',

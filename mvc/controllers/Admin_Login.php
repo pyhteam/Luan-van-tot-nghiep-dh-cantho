@@ -1,67 +1,79 @@
 <?php
-    class Admin_Login extends Controller {
-        public $admin;
-        public function __construct()
-        {
-            $this->admin = $this->model('AdminModel');
+class Admin_Login extends Controller
+{
+    public $admin;
+    public function __construct()
+    {
+        $this->admin = $this->model('AdminModel');
+    }
+
+    public function login()
+    {
+        $this->view('backend/login/login');
+    }
+
+
+    public function post_login()
+    {
+
+        $test_validate = false;
+        $error = array();
+        $result_old = array();
+        // partner
+        $partner = isset($_POST['partner']) ? $_POST['partner'] : null;
+        //1. email
+        $error['email'] = array();
+        if ($_POST['email'] == "") {
+            $test_validate = true;
+            array_push($error['email'], "Vui lòng nhập email");
+        } else {
+            $result_old['email'] = $_POST['email'];
         }
 
-        public function login(){
-            $this->view('backend/login/login');
+        //2 password
+        $error['password'] = array();
+        if (!isset($_POST['password']) || $_POST['password'] == "") {
+            $test_validate = true;
+            array_push($error['password'], 'Vui lòng nhập mật khẩu');
+        } else {
+            $result_old['password'] = $_POST['password'];
         }
-        
 
-        public function post_login(){
-          
-            $test_validate = false;
-            $error = array();
-            $result_old = array();
+        if ($test_validate) {
 
-            //1. email
-            $error['email'] = array();
-            if($_POST['email']==""){
-                $test_validate = true;
-                array_push($error['email'],"Vui lòng nhập email");
-            }else{
-                $result_old['email'] = $_POST['email'];
+            $this->view('backend/login/login', [
+                'error' => $error,
+                'result_old' => $result_old
+            ]);
+        } else {
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+            $result = null;
+            if($partner =="1"){
+                $result =  json_decode($this->admin->test_login_partner($email, $password));
             }
+            else {
 
-            //2 password
-            $error['password'] = array();
-            if(!isset($_POST['password']) || $_POST['password']==""){
-                $test_validate = true;
-                array_push($error['password'],'Vui lòng nhập mật khẩu');
-            }else{
-                $result_old['password'] = $_POST['password'];
+                $result =  json_decode($this->admin->test_login($email, $password));
             }
-
-            if($test_validate){
-
-                $this->view('backend/login/login',[
-                    'error' => $error,
-                    'result_old' => $result_old
+            if ($result) {
+                $_SESSION["isPartner"] = $partner ? true : false;
+                $_SESSION["admin_login"]['id'] = $result->id;
+                $_SESSION["admin_login"]['name'] = $result->name;
+                $_SESSION["admin_login"]['email'] = $result->email;
+                $_SESSION["admin_login"]['role'] = $result->role;
+                header('location: index.php?url=Admin');
+            } else {
+                $this->view('backend/login/login', [
+                    'message_error' => "Đăng nhập không thành công"
                 ]);
-            }else{
-                $email = $_POST['email'];
-                $password = md5($_POST['password']);
-                $result =  json_decode($this->admin->test_login($email,$password));
-                if($result){
-
-                    $_SESSION["admin_login"]['id']= $result->id;
-                    $_SESSION["admin_login"]['email'] = $result->email;
-                    $_SESSION["admin_login"]['role'] = $result->role;
-                    header('location: index.php?url=Admin');
-                }else{
-                    $this->view('backend/login/login',[
-                        'message_error' => "Đăng nhập không thành công"
-                    ]);
-                }
             }
-        }
-
-        public function logout(){
-            unset($_SESSION['admin_login']);
-            $this->view('backend/login/login');
         }
     }
-?>
+
+    public function logout()
+    {
+        unset($_SESSION['admin_login']);
+        $this->view('backend/login/login');
+    }
+}
